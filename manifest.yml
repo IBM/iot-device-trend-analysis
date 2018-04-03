@@ -1,0 +1,15 @@
+declared-services:
+  cloudant:
+    label: cloudantNoSQLDB
+    plan: Lite
+applications:
+- path: .
+  memory: 512M
+  instances: 1
+  domain: mybluemix.net
+  name: Iot-Analytics
+  host: slam-iot-analytics
+  disk_quota: 1024M
+  buildpack: python_buildpack
+  services:
+  - cloudant

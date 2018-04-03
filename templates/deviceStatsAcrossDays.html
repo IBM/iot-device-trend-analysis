@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>IoT Data Analysis</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="static/stylesheets/style.css">
+    <script src="../static/scripts/plotly-latest.min.js"></script>
+  </head>
+
+  <body>
+    <table>
+      <tr>
+        <td>
+            <h2>Compare devices field stats</h2>
+              <p></p>
+                    <p class = "select-device-text">Select devices</p>
+                    <p class = "select-device-instr">Hold down the Ctrl (windows) / Command (Mac) button to select multiple options.</p>
+                  <div class="choose-deviceid">
+                    <select class="select multiple" id="selectDevice" multiple>
+                        <option disabled="" selected="" value="disabled">Loading...</option>
+                    </select>
+                </div>
+                <p></p>
+                <div class="choose-fields">
+                    Field
+                    <select class="select">
+                        <option disabled="" selected="" value="disabled">Loading...</option>
+                    </select>
+                </div>
+                  <p></p>                  
+              <div class="choose-date">
+                <div class="select-start">
+                  Start date:
+                    <select class="select">
+                        <option disabled="" selected="" value="disabled">Loading...</option>
+                    </select>
+                  </div>
+                  <p></p>
+                  <div class="select-end">
+                  End date:
+                    <select class="select-end">
+                        <option disabled="" selected="" value="disabled">Loading...</option>
+                    </select>
+                  </div>
+                </div>
+
+
+
+          <p>
+          <button class = "get-data" aria-label="Get Data">Generate Plot</button>
+          </p>
+          <div id="plotly_div1"></div>
+          <p><br></p>
+
+          <!--img id="jpg-export"></img-->
+    </table>
+  </body>
+
+</html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="https://d3js.org/d3.v4.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="../static/scripts/deviceStatsAcrossDays.js"></script>
