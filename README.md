@@ -26,9 +26,9 @@ In this code pattern, we will create a web application to visualize IoT data to 
 1. [IoT Platform Data Store](#1-IoT-Platform-Data-Store)
 2. [Clone the repo](#2-clone-the-repo)
 3. [Configure .env file](#3-configure-env-file)
-4. [Run Application](#4-run-application)
-5. [Deploy to IBM Cloud](#5-configure-manifest-file-and-deploy-to-ibm-cloud)
-
+4. [Update iot database name, devices and dates](#4-update-iot-database-name-devices-and-dates)
+5. [Run Application](#5-run-application)
+6. [Deploy to IBM Cloud](#6-configure-manifest-file-and-deploy-to-ibm-cloud)
 
 
 ## 1. IoT Platform Data Store
@@ -75,7 +75,7 @@ Now your cloudant database is set to receive data from Watson IoT Platform.
 
 In a directory of your choice, clone the repo:
 ```
-git clone
+git clone https://github.com/IBM/iot-device-trend-analysis
 ```
 
 ## 3. Configure .env file
