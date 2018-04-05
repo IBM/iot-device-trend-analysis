@@ -32,7 +32,7 @@ In this code pattern, we will create a web application to visualize IoT data to 
 7. [Deploy to IBM Cloud](#7-deploy-to-ibm-cloud)
 
 
-## 1. IoT Platform Setup
+## 1. IoT Platform setup
 
 Create [Internet of Things Platform](https://console.bluemix.net/registration/?target=/catalog/services/internet-of-things-platform) service. Next setup devices in your IoT Platform which would transmit data.  You can follow this guide to [create devices](https://developer.ibm.com/recipes/tutorials/how-to-register-devices-in-ibm-iot-foundation/).
 
@@ -68,7 +68,7 @@ The app is designed to handle payload including the following fields:
 
 Here the data fields are `connections`, `deviceCount` and `activeClients`, which are analyzed by the app to view trends in their values across time.
 
-## 2. Cloudant Data Store
+## 2. Cloudant as data store
 
 Next create a [Cloudant database](https://console.bluemix.net/catalog/services/cloudant-nosql-db) in IBM Cloud.
 
@@ -105,14 +105,14 @@ You should view similar data in your Cloudant json as below:
 </p>
 
 
-## 2. Clone the repo
+## 3. Clone the repo
 
 In a directory of your choice, clone the repo:
 ```
 git clone https://github.com/IBM/iot-device-trend-analysis
 ```
 
-## 3. Configure .env file
+## 4. Configure .env file
 
 Create a `.env` file in the root directory of your clone of the project repository by copying the sample `.env.example` file using the following command:
 
@@ -132,7 +132,7 @@ The `.env` file will look something like the following:
   ```
 
 
-## 4. Update iot database name, devices and dates
+## 5. Update iot database name, devices and dates
 
 In `run.py` update database name, dates and deviceIds to create the dataset you would like to plot.
 
@@ -149,7 +149,7 @@ dates = ['2018-01-16','2018-01-17','2018-01-18','2018-01-19','2018-01-20',
 ```
 
 
-## 5. Run Application
+## 6. Run Application
 
 cd into this project's root directory
 + Run `pip install -r requirements.txt` to install the app's dependencies
@@ -158,7 +158,7 @@ cd into this project's root directory
 
 
 
-## 6. Deploy to IBM Cloud
+## 7. Deploy to IBM Cloud
 
 Edit the `manifest.yml` file in the folder that contains your code and replace with a unique name for your application. The name that you specify determines the application's URL, such as `your-application-name.mybluemix.net`. Additionally - update the service names so they match what you have in IBM Cloud. The relevant portion of the `manifest.yml` file looks like the following:
 
