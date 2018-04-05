@@ -1,6 +1,6 @@
 # Create an IoT device trend analysis and visualization app
 
-In this code pattern, we will create a web application to visualize IoT data to view trends and stats of devices across days. We will store the data from IoT platform in a cloudant database.  The application will access the data from the cloudant database's daily store to create analytical visualization of the data.  The plotly js plots are used to create visualizations based on user inputs.  The plotly js provides a great way to display data visually through numerous plot types and ability to manage and enhance on plots.
+In this code pattern, we will create a web application to visualize IoT data to view trends and stats of devices across days. We will store the data from IoT platform in a Cloudant database using IoT Platform's built in ability to store data in a database of our choice.  The application will access the data from the Cloudant database's daily store to create analytical visualization of the data.  The plotly js plots are used to create these visualizations of the data based on user inputs.  The plotly js provides a great way to display data visually through numerous plot types and ability to manage and enhance on plots.
 
 # Architecture Flow
 
@@ -33,17 +33,23 @@ In this code pattern, we will create a web application to visualize IoT data to 
 
 ## 1. IoT Platform Data Store
 
-Create [Internet of Things Platform service](https://console.bluemix.net/registration/?target=/catalog/services/internet-of-things-platform)
+Create [Internet of Things Platform](https://console.bluemix.net/registration/?target=/catalog/services/internet-of-things-platform) service.
 
-Follow these guides to [create devices](https://developer.ibm.com/recipes/tutorials/how-to-register-devices-in-ibm-iot-foundation/) and [simulate data](https://console.bluemix.net/docs/services/IoT/devices/device_sim.html#sim_device_data)
+Follow these guides to [create devices](https://developer.ibm.com/recipes/tutorials/how-to-register-devices-in-ibm-iot-foundation/) and [simulate data](https://console.bluemix.net/docs/services/IoT/devices/device_sim.html#sim_device_data) sent through by the devices. Once you have setup the simulation, you can update the payload and frequency of data sent by the device.  The simulated data can look similar to below:
+<p align="center">
+  <img width="500"  src="readme_images/simulate_device.png">
+</p>
+
 
 The app is designed to handle payload including the following fields:
 ```
-"deviceID": "19ca0a0b6",
-"timeStamp": "2018-01-16T10:35:41.635Z",
-"activeClients": 65.0,
-"deviceCount": 85.0,
-"connections": 43.0
+  "deviceId": "d6a82126d",
+  "timestamp": "2018-01-13T11:36:31.046Z",
+  "data": {
+    "connections": 58,
+    "deviceCount": 78,
+    "activeClients": 68
+  }
 ```
 
 
