@@ -23,19 +23,33 @@ In this code pattern, we will create a web application to visualize IoT data to 
 
 
 ## Steps
-1. [IoT Platform Data Store](#1-IoT-Platform-Data-Store)
-2. [Clone the repo](#2-clone-the-repo)
-3. [Configure .env file](#3-configure-env-file)
-4. [Update iot database name, devices and dates](#4-update-iot-database-name-devices-and-dates)
-5. [Run Application](#5-run-application)
-6. [Deploy to IBM Cloud](#6-configure-manifest-file-and-deploy-to-ibm-cloud)
+1. [IoT Platform setup](#1-iot-platform-setup)
+2. [Cloudant as data store](#2-cloudant-as-data-store)
+3. [Clone the repo](#3-clone-the-repo)
+4. [Configure .env file](#4-configure-env-file)
+5. [Update iot database name, devices and dates](#5-update-iot-database-name-devices-and-dates)
+6. [Run Application](#6-run-application)
+7. [Deploy to IBM Cloud](#7-deploy-to-ibm-cloud)
 
 
-## 1. IoT Platform Data Store
+## 1. IoT Platform Setup
 
-Create [Internet of Things Platform](https://console.bluemix.net/registration/?target=/catalog/services/internet-of-things-platform) service.
+Create [Internet of Things Platform](https://console.bluemix.net/registration/?target=/catalog/services/internet-of-things-platform) service. Next setup devices in your IoT Platform which would transmit data.  You can follow this guide to [create devices](https://developer.ibm.com/recipes/tutorials/how-to-register-devices-in-ibm-iot-foundation/).
 
-Follow these guides to [create devices](https://developer.ibm.com/recipes/tutorials/how-to-register-devices-in-ibm-iot-foundation/) and [simulate data](https://console.bluemix.net/docs/services/IoT/devices/device_sim.html#sim_device_data) sent through by the devices. Once you have setup the simulation, you can update the payload and frequency of data sent by the device.  The simulated data can look similar to below:
+Once you have your devices you can [simulate data](https://console.bluemix.net/docs/services/IoT/devices/device_sim.html#sim_device_data) sent through by the devices. This can be done through `Settings`, by enabling `Active Device Simulator` under `Experimental Features`.  Find `Settings` option on your left tab:
+
+<p align="left">
+  <img height="400"  src="readme_images/options-settings.png">
+</p>
+
+And next enable the `Active Device Simulator` under `Experimental Features`
+
+<p align="center">
+  <img width="500"  src="readme_images/features-simulate.png">
+</p>
+
+
+Once you have enabled the simulation, you can update the payload and frequency of data sent by the device.  The simulated data can look similar to below:
 <p align="center">
   <img width="500"  src="readme_images/simulate_device.png">
 </p>
@@ -44,7 +58,7 @@ Follow these guides to [create devices](https://developer.ibm.com/recipes/tutori
 The app is designed to handle payload including the following fields:
 ```
   "deviceId": "d6a82126d",
-  "timestamp": "2018-01-13T11:36:31.046Z",
+  "timestamp": "2018-04-04T11:36:31.046Z",
   "data": {
     "connections": 58,
     "deviceCount": 78,
@@ -52,10 +66,13 @@ The app is designed to handle payload including the following fields:
   }
 ```
 
+Here the data fields are `connections`, `deviceCount` and `activeClients`, which are analyzed by the app to view trends in their values across time.
+
+## 2. Cloudant Data Store
 
 Next create a [Cloudant database](https://console.bluemix.net/catalog/services/cloudant-nosql-db) in IBM Cloud.
 
-Configure the IBM Watson Iot Platform to set up Cloudant database as daily store.
+Then, configure the IBM Watson Iot Platform to set up Cloudant database as daily store.
 
 Go to `Extensions` on you IoT Platform
 
@@ -66,7 +83,7 @@ Go to `Extensions` on you IoT Platform
 Under `Historical Data Storage`, choose `Setup` and find your Cloudant database.  
 
 <p align="center">
-  <img width="200"  src="readme_images/historical-data-storage.png">
+  <img width="400"  src="readme_images/historical-data-storage.png">
 </p>
 
 Set up your `Bucket Interval` for `Day` and click `Done`
@@ -75,7 +92,18 @@ Set up your `Bucket Interval` for `Day` and click `Done`
   <img height="200"  src="readme_images/setup-interval.png">
 </p>
 
-Now your cloudant database is set to receive data from Watson IoT Platform.
+Now your cloudant database is set to receive data from Watson IoT Platform.  In your Cloudant, you should view a database for each day now:
+
+<p align="center">
+  <img width="700"  src="readme_images/cloudant-database.png">
+</p>
+
+You should view similar data in your Cloudant json as below:
+
+<p align="center">
+  <img width="350"  src="readme_images/cloudant-json.png">
+</p>
+
 
 ## 2. Clone the repo
 
@@ -132,7 +160,7 @@ cd into this project's root directory
 
 ## 6. Deploy to IBM Cloud
 
-Edit the `manifest.yml` file in the folder that contains your code and replace with a unique name for your application. The name that you specify determines the application's URL, such as `your-application-name.mybluemix.net`. Additionally - update the service names so they match what you have in Bluemix. The relevant portion of the `manifest.yml` file looks like the following:
+Edit the `manifest.yml` file in the folder that contains your code and replace with a unique name for your application. The name that you specify determines the application's URL, such as `your-application-name.mybluemix.net`. Additionally - update the service names so they match what you have in IBM Cloud. The relevant portion of the `manifest.yml` file looks like the following:
 
 
 ```
@@ -149,7 +177,7 @@ applications:
   - cloudant
 ```
 
-In the command line use the following command to push the application to IBM Cloud:
+In the command line use cloud foundry command to push the application to IBM Cloud:
 ```
 cf push
 ```
