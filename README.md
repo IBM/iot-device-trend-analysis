@@ -148,14 +148,14 @@ Now you are ready to run your application. Go into this project's root directory
 
 ### Create dataset
 
-Before analyzing you will need to create a dataset which includes the database initial name, dates and device Ids.  You can do this through the app by going to `Create Dataset` link on the main page.  This pulls the `iot databsase initial name`, `dates` and `deviceIds` directly from the Cloudant database.
+Before analyzing the data, you will need to define a dataset. This includes dates and device Ids from your Cloudant storage.  You can do this through the app by going to `Create Dataset` link on the main page.  This pulls all the `dates` and `deviceIds` directly from the Cloudant database.  You can make selection for these fields and give a name to your dataset.
 
 <p align="center">
   <img width="450"  src="readme_images/create-dataset.png">
 </p>
 
 
-Or you can manually edit the `datasets.json` to fill in your database info with dates and deviceIDs. The file should look like below:
+Or you can manually edit the `datasets.json` to fill in your database info with dates, deviceIDs, iot database initial and name for the dataset. The file should look like below:
 ```
 {
   "currentDataset": "New1",
