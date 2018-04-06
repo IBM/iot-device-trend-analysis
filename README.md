@@ -1,6 +1,6 @@
 # Create an IoT device trend analysis and visualization app
 
-In this code pattern, we will create a web application to visualize IoT data to view trends and stats of devices across days. We will store the data from IoT platform in a Cloudant database using IoT Platform's built in ability to store data directly to a database on our IBM Cloud.  
+In this code pattern, we will create a web application to visualize IoT device data, and view trends and stats of device fields across days. We will store the data from IoT platform in a Cloudant database using IoT Platform's built-in ability to store data directly to a database on our IBM Cloud.  
 
 The application will access the data from the Cloudant database's daily store to create analytical visualization of the data.  The plotly js plots are used to create these visualizations of the data based on user inputs.  The plotly js provides a great way to display data visually through numerous plot types and ability to manage and enhance on plots.
 
