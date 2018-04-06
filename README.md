@@ -29,8 +29,8 @@ The application will access the data from the Cloudant database's daily store to
 2. [Cloudant as data store](#2-cloudant-as-data-store)
 3. [Clone the repo](#3-clone-the-repo)
 4. [Configure .env file](#4-configure-env-file)
-5. [Run Application](#6-run-application)
-6. [Deploy to IBM Cloud](#7-deploy-to-ibm-cloud)
+5. [Run Application](#5-run-application)
+6. [Deploy to IBM Cloud](#6-deploy-to-ibm-cloud)
 
 
 ## 1. IoT Platform setup
