@@ -212,7 +212,6 @@ function plotCorrelation(data) {
           })
           .then(
             function(url) {
-              img_jpg.attr("src", url);
               return Plotly.toImage(gd, {
                 format: 'jpeg',
                 height: 600,

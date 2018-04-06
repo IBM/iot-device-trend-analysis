@@ -1,6 +1,8 @@
 # Create an IoT device trend analysis and visualization app
 
-In this code pattern, we will create a web application to visualize IoT data to view trends and stats of devices across days. We will store the data from IoT platform in a Cloudant database using IoT Platform's built in ability to store data in a database of our choice.  The application will access the data from the Cloudant database's daily store to create analytical visualization of the data.  The plotly js plots are used to create these visualizations of the data based on user inputs.  The plotly js provides a great way to display data visually through numerous plot types and ability to manage and enhance on plots.
+In this code pattern, we will create a web application to visualize IoT data to view trends and stats of devices across days. We will store the data from IoT platform in a Cloudant database using IoT Platform's built in ability to store data directly to a database on our IBM Cloud.  
+
+The application will access the data from the Cloudant database's daily store to create analytical visualization of the data.  The plotly js plots are used to create these visualizations of the data based on user inputs.  The plotly js provides a great way to display data visually through numerous plot types and ability to manage and enhance on plots.
 
 # Architecture Flow
 
@@ -27,9 +29,8 @@ In this code pattern, we will create a web application to visualize IoT data to 
 2. [Cloudant as data store](#2-cloudant-as-data-store)
 3. [Clone the repo](#3-clone-the-repo)
 4. [Configure .env file](#4-configure-env-file)
-5. [Update iot database name, devices and dates](#5-update-iot-database-name-devices-and-dates)
-6. [Run Application](#6-run-application)
-7. [Deploy to IBM Cloud](#7-deploy-to-ibm-cloud)
+5. [Run Application](#6-run-application)
+6. [Deploy to IBM Cloud](#7-deploy-to-ibm-cloud)
 
 
 ## 1. IoT Platform setup
@@ -132,33 +133,59 @@ The `.env` file will look something like the following:
   ```
 
 
-## 5. Update iot database name, devices and dates
+## 5. Run Application
 
-In `run.py` update database name, dates and deviceIds to create the dataset you would like to plot.
-
-```none
-iotDatabaseName = "iotp_nmghmm_default_"
-
-#hard coded deviceIds
-deviceIds = ['19ca0a0b6','02e356e3a','2eeae108d','c270d3f23','19c94a94f',
-                '38a42a88e','076814d5e','7c45d2861','a0c91d0f8','f788dc541']
-
-#hard coded dates
-dates = ['2018-01-16','2018-01-17','2018-01-18','2018-01-19','2018-01-20',
-            '2018-01-21','2018-01-22','2018-01-23','2018-01-24','2018-01-25']
-```
-
-
-## 6. Run Application
-
-cd into this project's root directory
+Now you are ready to run your application. Go into this project's root directory
 + Run `pip install -r requirements.txt` to install the app's dependencies
 + Run `python run.py`
 + Access the running app in a browser at <http://0.0.0.0:5000/>
 
+<p align="center">
+  <img width="650"  src="readme_images/app-interface.png">
+</p>
+
+### Create dataset
+
+Before analyzing you will need to create a dataset which includes the database inital name, dates and device Ids.  You can do through the app by going to `Create Dataset`
+
+<p align="center">
+  <img width="450"  src="readme_images/create-dataset.png">
+</p>
 
 
-## 7. Deploy to IBM Cloud
+Or you can manually edit the `datasets.json` file which should look like below:
+```
+{
+  "currentDataset": "New1",
+  "datasets": [
+    {
+      "databaseName": "iotp_nmghmm_default_",
+      "dataset": "New1",
+      "dates": [
+        "2018-01-28",
+        "2018-01-29",
+        "2018-01-30"
+      ],
+      "deviceIds": [
+        "830ab1575",
+        "bc1a6275a",
+        "1d0c388d0",
+        "51bdc89e4"
+      ]
+    }
+  ]
+}
+```
+
+### Analyze the data
+
+Once you have defined your dataset, you are ready to analyze your data through the different options present on the homepage. Each analysis will ask for device(s) and date(s) for the plot. Once your plot is generated, you can explore different plotly option on the top right.
+
+<p align="center">
+  <img width="650"  src="readme_images/hourly-stats.png">
+</p>
+
+## 6. Deploy to IBM Cloud
 
 Edit the `manifest.yml` file in the folder that contains your code and replace with a unique name for your application. The name that you specify determines the application's URL, such as `your-application-name.mybluemix.net`. Additionally - update the service names so they match what you have in IBM Cloud. The relevant portion of the `manifest.yml` file looks like the following:
 

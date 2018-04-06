@@ -177,6 +177,11 @@ select {
 	text-align: center;
 }
 
+.create-dataset a {
+	color: white;
+	text-decoration: underline;
+}
+
 .select-device-instr {
 	font-size: 12px;
 	-webkit-margin-before: 0em;
@@ -200,4 +205,25 @@ select {
 
 .multiple {
 	height: 150px;
+}
+
+input {
+	display: block;
+	padding-top: 5px;
+  background-color: lightgoldenrodyellow;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+
+.select-instr {
+	font-size: 12px;
+	-webkit-margin-before: 0em;
+	-webkit-margin-after: 1em;
+}
+
+.select-text {
+	font-weight: bold;
+	-webkit-margin-before: 0em;
+	-webkit-margin-after: 0em;
 }
