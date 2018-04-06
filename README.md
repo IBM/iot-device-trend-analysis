@@ -37,7 +37,20 @@ The application will access the data from the Cloudant database's daily store to
 
 Create [Internet of Things Platform](https://console.bluemix.net/registration/?target=/catalog/services/internet-of-things-platform) service. Next setup devices in your IoT Platform which would transmit data.  You can follow this guide to [create devices](https://developer.ibm.com/recipes/tutorials/how-to-register-devices-in-ibm-iot-foundation/).
 
-Once you have your devices you can [simulate data](https://console.bluemix.net/docs/services/IoT/devices/device_sim.html#sim_device_data) sent through by the devices. This can be done through `Settings`, by enabling `Active Device Simulator` under `Experimental Features`.  Find `Settings` option on your left tab:
+The app is designed to handle payload including the following fields:
+```
+  "deviceId": "d6a82126d",
+  "timestamp": "2018-04-04T11:36:31.046Z",
+  "data": {
+    "connections": 58,
+    "deviceCount": 78,
+    "activeClients": 68
+  }
+```
+
+Here the data fields are `connections`, `deviceCount` and `activeClients`, which are analyzed by the app to view trends in their values across time.
+
+In the IBM IoT Platform, you can [simulate data](https://console.bluemix.net/docs/services/IoT/devices/device_sim.html#sim_device_data) sent through by the devices. This can be done through `Settings`, by enabling `Active Device Simulator` under `Experimental Features`.  Find `Settings` option on your left tab:
 
 <p align="left">
   <img height="400"  src="readme_images/options-settings.png">
@@ -56,18 +69,7 @@ Once you have enabled the simulation, you can update the payload and frequency o
 </p>
 
 
-The app is designed to handle payload including the following fields:
-```
-  "deviceId": "d6a82126d",
-  "timestamp": "2018-04-04T11:36:31.046Z",
-  "data": {
-    "connections": 58,
-    "deviceCount": 78,
-    "activeClients": 68
-  }
-```
 
-Here the data fields are `connections`, `deviceCount` and `activeClients`, which are analyzed by the app to view trends in their values across time.
 
 ## 2. Cloudant as data store
 
@@ -179,7 +181,7 @@ Or you can manually edit the `datasets.json` file which should look like below:
 
 ### Analyze the data
 
-Once you have defined your dataset, you are ready to analyze your data through the different options present on the homepage. Each analysis will ask for device(s) and date(s) for the plot. Once your plot is generated, you can explore different plotly option on the top right.
+Once you have defined your dataset, you are ready to analyze your data through the different options present on the homepage. Each analysis will ask for device(s) and date(s) to generate the plot. Once your plot is generated, you can explore different plotly interactive options on the top right which can allow to download the plot, change the plot type and other actions.
 
 <p align="center">
   <img width="650"  src="readme_images/hourly-stats.png">
