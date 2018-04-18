@@ -87,8 +87,7 @@ The IBM Watson IoT Platform service provides a dashboard to manage and configure
   <img width="800"  src="readme_images/create-iot-platform.png">
 </p>
 
-* You can pick the `Lite` plan for this code pattern to get started with Internet of Things Platform.
-
+* You can pick the `Lite` plan for this code pattern to get started with Internet of Things Platform.  
 
 <p align="center">
   <img width="800"  src="readme_images/iot-platform-plans.png">
@@ -230,7 +229,7 @@ First choose a `Device Type`.  Next, we will define the `Payload` to include the
 
 ## 3. Create Cloudant DB on IBM Cloud
 
-Now we are ready to store the IoT device data into a database.  The IBM Cloud provide several database options including relational and non-relational.  For our data, we would like to choose a NoSQL database such as Cloudant DB. The Cloudant DB provides for heavy read/write for an application, easy retrieval of data through API calls and a great interface to manage data directly. In this section, we will create a Cloudant DB on the IBM Cloud.
+Now we are ready to store the IoT device data into a database.  The IBM Cloud provide several database options including relational and non-relational options.  For our data with the json payload, we would like to choose a NoSQL database such as Cloudant DB. The Cloudant DB provides for heavy read/write for an application, easy retrieval of data through API calls and a great interface to manage data directly. In this section, we will create a Cloudant DB on the IBM Cloud.
 
 * Go to to your IBM Cloud dashboard.  You can go to `catalog` and under `Data & Analytics`, you can find `Cloudant NoSQL DB` service.
 
@@ -393,15 +392,15 @@ Once you have defined your dataset, you are ready to analyze your data through t
 
 This application built on Python Flask framework with Python to retrieve the JSON data from Cloudant DB, and with Javascript frontend to use the Plotly-js library.  Here we'll give a summary of the code file in the repo.
 
-* run.py:  This routes the pages on the web application and manages all the `GET` and `POST` commands made using Ajax on the Javascript scripts.
+* `run.py`:  This routes the pages on the web application and manages all the `GET` and `POST` commands made using Ajax on the Javascript scripts.
 
-* plotData.py:  This library pulls the data from Cloudant DB through API call and parses the data according to the function and input.  This library includes functions such as `Device_data_across_days` which pull data per device id for a start and end date, and `Hourly_stats_trends` which will create a json to plot the hourly stats and trends.
+* `plotData.py`:  This library pulls the data from Cloudant DB through API call and parses the data according to the function and input.  This library includes functions such as `Device_data_across_days` which pull data per device id for a start and end date, and `Hourly_stats_trends` which will create a json to plot the hourly stats and trends.
 
-* dataset.py:  This library provides functions to manage `datasets.json`, which includes pulling dataset information, adding dataset and setting the active dataset.
+* `dataset.py`:  This library provides functions to manage `datasets.json`, which includes pulling dataset information, adding dataset and setting the active dataset.
 
-* JS scripts (i.e static/scripts/deviceDataPerDay.js): There is a JS script for each page for this application. The javascript makes `GET` calls to update the page with dropdown options, ensures valid user input for the page, and makes the Ajax call to get the JSON data to plot.  Then it uses plotly-js library to create a plot for that page.
+* `JS scripts (i.e static/scripts/deviceDataPerDay.js)`: There is a JS script for each page for this application. The javascript makes `GET` calls to update the page with dropdown options, ensures valid user input for the page, and makes the Ajax call to get the JSON data to plot.  Then it uses plotly-js library to create a plot for that page.
 
-* html (i.e /templates/devicePerDay.html): The html code is provided for each page, which is primarily to retrieve user input and display plots
+* `html (i.e /templates/devicePerDay.html)`: The html code is provided for each page, which is primarily to retrieve user input and display plots
 
 
 ## 7. Deploy application to IBM Cloud
