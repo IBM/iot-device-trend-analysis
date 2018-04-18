@@ -45,7 +45,7 @@ When the reader has completed this code pattern, they will understand how to:
 ## Prerequisite
 
 - [Python](https://www.python.org/downloads/)
-- [IBM Cloud account](hhttps://console.bluemix.net/registration/?target=%2Fdashboard%2Fapps)
+- [IBM Cloud account](https://console.bluemix.net/registration/?target=%2Fdashboard%2Fapps)
 - [Cloud Foundary CLI](https://docs.cloudfoundry.org/cf-cli/install-go-cli.html)
 
 
@@ -57,12 +57,12 @@ When the reader has completed this code pattern, they will understand how to:
 4. [Configure Cloudant DB as data store for IoT device data](#4-configure-cloudant-db-as-data-store-for-iot-device-data)
 5. [Run the web application](#5-run-the-web-application)
 6. [About the application](#6-about-the-application)
-7. [Deploy application to IBM Cloud](#6-deploy-to-ibm-cloud)
+7. [Deploy application to IBM Cloud](#7-deploy-application-to-ibm-cloud)
 
 
-* [Extending the Code Pattern](extending-the-code-pattern)
-* [Troubleshooting](Troubleshooting)
-* [Additional Resources](additional-resources)
+* [Extending the Code Pattern](#-extending-the-code-pattern)
+* [Troubleshooting](#-troubleshooting)
+* [Additional Resources](#-additional-resources)
 
 ## 1. Create IBM Watson IoT Platform service on IBM Cloud
 
