@@ -4,11 +4,11 @@ declared-services:
     plan: Lite
 applications:
 - path: .
-  memory: 512M
+  memory: 256M
   instances: 1
   domain: mybluemix.net
   name: Iot-Analytics
-  host: slam-iot-analytics
+  host: iot-device-analytics
   disk_quota: 1024M
   buildpack: python_buildpack
   services:

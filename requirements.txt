@@ -1,4 +1,4 @@
 Flask==0.10.1
 cloudant==2.3.1
-requests
 python-dotenv
+json

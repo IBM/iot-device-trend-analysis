@@ -1,18 +1,36 @@
-# Create an IoT device trend analysis and visualization app
+# IoT device data value trend and visualization app
 
-In this code pattern, we will create a web application to visualize IoT device data, and view trends and stats of device fields across days. We will store the data from IoT platform in a Cloudant database using IoT Platform's built-in ability to store data directly to a database on our IBM Cloud.  
+In this code pattern, we will setup and create a web application to visualize IoT device data and view trends and stats of device fields across days. The Iot industries are looking for ways to analyze the use of Iot devices, and would like better understand the usage of devices. This code pattern will demonstrate using IBM solutions to read and store IoT device data, and then build an application on top of it. The code pattern uses services offered on IBM Cloud such as IBM Watson IoT Platform and Cloudant database, in addition to deploying the application to the IBM Cloud.  Once setup, the application displays the time-series field data as plots, showing device data trends and statistical analysis.
 
-The application will access the data from the Cloudant database's daily store to create analytical visualization of the data.  The plotly js plots are used to create these visualizations of the data based on user inputs.  The plotly js provides a great way to display data visually through numerous plot types and ability to manage and enhance on plots.
+First, we will create an IBM Watson IoT Platform service which provides a platform to manage IoT devices and the data being sent across those devices.  This code pattern provides directions on creating dummy IoT devices in the Watson IoT Platform, and then simulating data for those devices using a simulation feature in the Watson IoT Platform.  We are interested in certain fields in payload for the devices, for which the application is designed to read data.
 
-# Architecture Flow
+Next, we will store the devices' fields data from the Watson IoT platform into a Cloudant database.  The Cloudant database is a NoSQL JSON document store that is optimized for handling heavy workloads of read and write in the cloud.  In this code pattern, we will walk through the process of creating a Cloudant service on the IBM Cloud, which provides a straight forward way to setting up the database, and provides credentials to access it through applications.  The Cloudant interface allows to manage and view our data in different databases.  Once our Cloudant database is created, we will go through steps on configuring Watson IoT Platform to store the IoT device data into Cloudant databases.
+
+Once, we have completed the setup with our data coming through the Watson IoT Platform and into the Cloudant database, we are ready to run the application to view the data.  The application first requests the user to create a dataset based on the data now being stored in the Cloudant database.  This can be viewed as our first layer of filtering assuming the data scientist/analyst would like to focus on particular devices and dates. Especially considering the data coming through is large, it can be divided into different datasets for more focused analysis. After creating a dataset, the user can create different visualizations for the data.  
+
+The user can view the raw data for a device's field across time, or different analytical plot for the devices across days.  The analytical plots include creating hourly trends plot that capture the behavior of the data per hour. This includes looking at the max, min and moving average of the data. This allows to capture the general trend of the field across time and capture any anomalies.  Other analytical plots include comparing device's field stats (min, median, max) across days and viewing correlation plot between fields for a device across days.  The Plotly-js plots are used to create these visualizations of the data based on user inputs.  The Plotly-js provides a great way to display data visually through numerous plot types and ability to manage and enhance on plots.
+
+This web application is built on Python Flask framework, with Javascript(JS) and HTML frontend.  The python backend allows to create libraries (plotData.py and dataset.py), which parse and analyze the JSON data from the Cloudant database. The frontend application provides a separate page for each plot type, and an associated JS script for each page in the `scripts` folder under `static` (i.e deviceCorrelationAnalysis.js).  The user inputs are sent through an Ajax call to the python backend (run.py) which retrieves the respective data and returns it. This includes the data to be plotted, which is captured by the JS script for the page and shows how to plot using the Plotly-js library. These plots are then displayed through the HTML page for the plot.  
+
+This code pattern can be useful to developer's looking to enhance IoT analysis skill, for IoT data scientists/analysts looking to create their own customized application, and anyone with interest in creating a visual analytical application.
+
+When the reader has completed this code pattern, they will understand how to:
+
+* Setup IoT devices on IBM Watson IoT Platform and simulate device's data
+* Create Cloudant service on IBM Cloud, and using as data store for IoT device data
+* Develop an application to parse JSON data from Cloudant DB using Python
+* Display Plotly-js plots through a web application
+
+
+## Architecture Flow
 
 <p align="center">
   <img width="600"  src="readme_images/arch_flow.png">
 </p>
 
 
-1. The Iot data is stored in Cloudant database as daily buckets
-2. The data from Cloudant is used to create plotly visualizatons
+1. The IoT device data is stored in Cloudant database from the IBM Watson IoT Platform
+2. The data from Cloudant database is used to create plotly visualizatons
 3. The plot is displayed through the Web UI based on user requests
 4. The user can view the plots and perform analysis on each plot through the web UI
 
@@ -20,24 +38,80 @@ The application will access the data from the Cloudant database's daily store to
 ## Included Components
 
 + [IBM Watson IoT Platform](https://console.bluemix.net/registration/?target=/catalog/services/internet-of-things-platform)
-+ [Cloudant](https://www.ibm.com/analytics/us/en/technology/cloud-data-services/cloudant/)
++ [Cloudant](https://console.bluemix.net/catalog/services/cloudant-nosql-db)
 + [Plotly js](https://plot.ly/javascript/)
 
 
-## Steps
-1. [IoT Platform setup](#1-iot-platform-setup)
-2. [Cloudant as data store](#2-cloudant-as-data-store)
-3. [Clone the repo](#3-clone-the-repo)
-4. [Configure .env file](#4-configure-env-file)
-5. [Run Application](#5-run-application)
-6. [Deploy to IBM Cloud](#6-deploy-to-ibm-cloud)
+## Prerequisite
+
+- [Python](https://www.python.org/downloads/)
+- [IBM Cloud account](hhttps://console.bluemix.net/registration/?target=%2Fdashboard%2Fapps)
+- [Cloud Foundary CLI](https://docs.cloudfoundry.org/cf-cli/install-go-cli.html)
 
 
-## 1. IoT Platform setup
+## Sections
 
-Create [Internet of Things Platform](https://console.bluemix.net/registration/?target=/catalog/services/internet-of-things-platform) service. Next setup devices in your IoT Platform which would transmit data.  You can follow this guide to [create devices](https://developer.ibm.com/recipes/tutorials/how-to-register-devices-in-ibm-iot-foundation/).
+1. [Create IBM Watson IoT Platform service on IBM Cloud](#1-create-ibm-watson-iot-platform-service-on-ibm-cloud)
+2. [Create and simulate devices on IoT Platform](#2-create-and-simulate-devices-on-iot-platform)
+3. [Create Cloudant DB on IBM Cloud](#3-create-cloudant-db-on-ibm-cloud)
+4. [Configure Cloudant DB as data store for IoT device data](#4-configure-cloudant-db-as-data-store-for-iot-device-data)
+5. [Run the web application](#5-run-the-web-application)
+6. [About the application](#6-about-the-application)
+7. [Deploy application to IBM Cloud](#6-deploy-to-ibm-cloud)
 
-The app is designed to handle payload including the following fields:
+
+* [Extending the Code Pattern](extending-the-code-pattern)
+* [Troubleshooting](Troubleshooting)
+* [Additional Resources](additional-resources)
+
+## 1. Create IBM Watson IoT Platform service on IBM Cloud
+
+The IBM Watson IoT Platform service provides a dashboard to manage and configure devices, read data transmitted by the devices and numerous features to managing IoT devices. First, we would like to create the IBM Watson IoT Platform service in IBM Cloud.
+
+You can access IBM Cloud by going to https://console.bluemix.net/. If you do not have an IBM Cloud account you can create one.
+
+<p align="center">
+  <img width="800"  src="readme_images/register-ibm-cloud.png">
+</p>
+
+If you do have an IBM Cloud account or have created on, then login to create the service.  You can search for the service in `catalog` and choosing `Internet of things`.  Here we would like to pick the `Internet of Things Platform`
+
+<p align="center">
+  <img width="800"  src="readme_images/catalog-iot-platform.png">
+</p>
+
+
+Or alternatively can go directly to the [link here]((https://console.bluemix.net/registration/?target=/catalog/services/internet-of-things-platform)) to create the service.  Give your service a name and choose the `region`, `organization` and `space`.
+
+<p align="center">
+  <img width="800"  src="readme_images/create-iot-platform.png">
+</p>
+
+You can pick the `Lite` plan for this code pattern to get started with Internet of Things Platform.
+
+
+<p align="center">
+  <img width="800"  src="readme_images/iot-platform-plans.png">
+</p>
+
+Once your service is created, you can launch Watson IoT Platform by clicking the `Launch` button. Additionally, you can access documentation regarding the IoT Platform by going to `Docs` button.
+
+<p align="center">
+  <img width="800"  src="readme_images/launch-iot-platform.png">
+</p>
+
+Once your Watson IoT Platform, it should take you to a similar dashboard below.  Now you are ready to create devices and simulate data for the application.
+
+<p align="center">
+  <img width="800"  src="readme_images/iot-platform-dashboard.png">
+</p>
+
+
+## 2. Create and simulate devices on IoT Platform
+
+Once you have created your IBM Watson IoT Platform service, you are ready to setup devices to transmit data.  In this section, we will create a dummy device type, then create devices using the device type and then simulate data for those devices using the simulator feature in the IBM Watson IoT Platform.
+
+The application in the code pattern is designed to handle payload as the following json:
 ```
   "deviceId": "d6a82126d",
   "timestamp": "2018-04-04T11:36:31.046Z",
@@ -48,74 +122,197 @@ The app is designed to handle payload including the following fields:
   }
 ```
 
-Here the data fields are `connections`, `deviceCount` and `activeClients`, which are analyzed by the app to view trends in their values across time.
+The `deviceId` and `timestamp` are submitted automatically by the IoT Platform, however we would like to configure the devices to send data for `connections`, `deviceCount` and `activeClients`.  The application will plot and analyze these fields over time per device.
 
-In the IBM IoT Platform, you can [simulate data](https://console.bluemix.net/docs/services/IoT/devices/device_sim.html#sim_device_data) sent through by the devices. This can be done through `Settings`, by enabling `Active Device Simulator` under `Experimental Features`.  Find `Settings` option on your left tab:
+#### Add device type
 
-<p align="left">
+Before creating devices, we would need to create a device type.  Device types are intended to be groups of devices which share common characteristics.  
+
+* To add a `device type`, first go to the IBM Watson IoT Platform options on the left side of your dashboard and choose `Devices`.
+
+<p align="center">
+  <img height="400"  src="readme_images/options-devices.png">
+</p>
+
+
+* Next, go to `Device Types` on your screen, and click the `Add Device Type` button on the top right.
+
+
+<p align="center">
+  <img width="800"  src="readme_images/add-device-type.png">
+</p>
+
+
+* Here we will go through options to create the device type.  Under the `Identity` tab, choose `Device` for type, as this code pattern is focued on devices. Provide a `Name` and an optional `Description`, and then click `Next`.
+
+<p align="center">
+  <img width="800"  src="readme_images/device-type-identity.png">
+</p>
+
+On the `Device Information`, you can add attributes to the device type.  These attributes are optional. Then click `Next` and `Done`.  The device type should be registered and you should see a similar screen as below.
+
+<p align="center">
+  <img width="800"  src="readme_images/device-type-registered.png">
+</p>
+
+
+#### Add devices
+
+Now, we will add device to the device type we created.
+
+* You can choose `Register Devices` under your device type. Or go to `Devices` in the menu, and choose `Add Device` in the top right corner.
+
+<p align="center">
+  <img width="800"  src="readme_images/add-device.png">
+</p>
+
+* In the `Identity` tab, choose the device type and provide a `Device ID`.  Then click `Next`.
+
+<p align="center">
+  <img width="800"  src="readme_images/device-identity.png">
+</p>
+
+* You can choose to provide `Device Information` and `Add to Groups`.  You can go through the steps by clicking `Next`.  Under the `Security` tab, provide an `Authentication Token`.  Click `Next` and then `Done`.
+
+<p align="center">
+  <img width="800"  src="readme_images/device-add-token.png">
+</p>
+
+* Now your device is added to your IoT Platform.
+
+<p align="center">
+  <img width="800"  src="readme_images/device-info.png">
+</p>
+
+
+#### Simulate devices
+
+Now we would like to setup our devices to transmit data.  Ideally you would to like read in real data or can have scripts to simulate the data (see `Additional Resources` at the bottom for more information).  For this code pattern, we will go through steps to simulate data sent through by the devices, using simulator feature part of the Watson IoT Platform dashboard.
+The IoT Platform provides a simulator feature to simulate the payload transmitted by the device. In this step, we will turn on the simulator and simulate numbers for the fields to be transmitted by the device.  
+
+* Go to the menu on the left side of your dashboard and select the `Settings` option:
+
+<p align="center">
   <img height="400"  src="readme_images/options-settings.png">
 </p>
 
-And next enable the `Active Device Simulator` under `Experimental Features`
+* Here scroll down to the `Experimental Features` section.  And toggle enable the `Active Device Simulator`.
 
 <p align="center">
-  <img width="500"  src="readme_images/features-simulate.png">
+  <img width="800"  src="readme_images/features-simulate.png">
+</p>
+
+* Once you have enabled the simulation, you can update the payload and frequency of data sent by the device.  Look for `Simulations running` tab at the bottom of screen in your IoT Dashboard. Bring that up to create the simulation, by selecting `Add First Simulation`.
+
+<p align="center">
+  <img width="500"  src="readme_images/create-simulation.png">
 </p>
 
 
-Once you have enabled the simulation, you can update the payload and frequency of data sent by the device.  The simulated data can look similar to below:
+First choose a `Device Type`.  Next, we will define the `Payload` to include the fields for this code pattern: `connections`, `deviceCount` and `activeClients`.  The simulated data can look similar to below where it is generating random numbers for the fields, transmitting data every minute.  You can provide an `Event type name`.  Once done, click `Save`.
+
 <p align="center">
   <img width="500"  src="readme_images/simulate_device.png">
 </p>
 
+* Now for your device type, you can add devices for which you would like to run the simulation for.  Click the `dropdown` arrow next to your device type, and choose `Use Registered Device`.  Here you will see your devices and can choose the device you would like to simulate.
+
+<p align="center">
+  <img width="500"  src="readme_images/simulate-choose-device.png">
+</p>
+
+* To check your device simulation.  You can click on your device under `Devices`, and then go to the `Recent Events` tab.  Here you can view the live data being transmitted for the device.
+
+<p align="center">
+  <img width="500"  src="readme_images/device-events.png">
+</p>
+
+
+## 3. Create Cloudant DB on IBM Cloud
+
+Now we are ready to store the IoT device data into a database.  The IBM Cloud provide several database options including relational and non-relational.  For our data, we would like to choose a NoSQL database such as Cloudant DB. The Cloudant DB provides for heavy read/write for an application, easy retrieval of data through API calls and a great interface to manage data directly. In this section, we will create a Cloudant DB on the IBM Cloud.
+
+Go to to your IBM Cloud dashboard.  You can go to `catalog` and under `Data & Analytics`, you can find `Cloudant NoSQL DB` service.
+
+<p align="center">
+  <img width="800"  src="readme_images/catalog-cloudant.png">
+</p>
+
+Or you can go directly to the [service here](https://console.bluemix.net/catalog/services/cloudant-nosql-db) to create the Cloudant DB. Give your Cloudant DB a `Service name`, and then choose the `region`, `organization` and `space`
+
+<p align="center">
+  <img width="800"  src="readme_images/create-cloudant.png">
+</p>
+
+You can pick from different plans, depending on the size of your data.  For this code pattern, we can use the `Lite` plan to get started.  Click `Create` at the bottom left to create the service in your IBM Cloud.
+
+<p align="center">
+  <img width="800"  src="readme_images/cloudant-plans.png">
+</p>
+
+This has now created the service.  Through this service, you can launch the Cloudant interface, retrieve credentials for the service and create connections to applications in your IBM Cloud.
+
+
+<p align="center">
+  <img width="800"  src="readme_images/launch-cloudant.png">
+</p>
+
+
+To get service credentials, go to the `Service credentials` option on the left. Here you can generate credentials for the service by clicking on `New credentials`.  Go ahead and create credentials for the service as we will need those for our application.
+
+<p align="center">
+  <img width="800"  src="readme_images/cloudant-credentials.png">
+</p>
 
 
 
-## 2. Cloudant as data store
+## 4. Configure Cloudant DB as data store for IoT device data
 
-Next create a [Cloudant database](https://console.bluemix.net/catalog/services/cloudant-nosql-db) in IBM Cloud.
+Now, we will configure our IBM Watson IoT Platform to setup Cloudant DB as daily store for our device data.  The IBM Watson IoT Platform provides a straight forward way to create daily buckets for our device data.  Once we are configured, we will have a database for each day in our Cloudant DB with our device data.
 
-Then, configure the IBM Watson Iot Platform to set up Cloudant database as daily store.
+* In the IoT Platform, go to the menu and choose `Extensions`.
 
-Go to `Extensions` on you IoT Platform
-
-<p align="left">
+<p align="center">
   <img height="400"  src="readme_images/iot-plaform-options.png">
 </p>
 
-Under `Historical Data Storage`, choose `Setup` and find your Cloudant database.  
+* Here, under `Historical Data Storage`, choose `Setup`.  Here you will see all your databases in your IBM Cloud. Find the Cloudant DB you created to store the device data.  
 
 <p align="center">
   <img width="400"  src="readme_images/historical-data-storage.png">
 </p>
 
-Set up your `Bucket Interval` for `Day` and click `Done`
+* Next, set up your `Bucket Interval` for `Day` and then click `Done`
 
 <p align="center">
-  <img height="200"  src="readme_images/setup-interval.png">
+  <img width="800"  src="readme_images/setup-interval.png">
 </p>
 
-Now your cloudant database is set to receive data from Watson IoT Platform.  In your Cloudant, you should view a database for each day now:
+* Now your cloudant DB is set to receive data from Watson IoT Platform.  In your Cloudant DB, you should view a database for each day now:
 
 <p align="center">
-  <img width="700"  src="readme_images/cloudant-database.png">
+  <img width="800"  src="readme_images/cloudant-database.png">
 </p>
 
-You should view similar data in your Cloudant json as below:
+* You should view similar data in your Cloudant json as below:
 
 <p align="center">
   <img width="350"  src="readme_images/cloudant-json.png">
 </p>
 
 
-## 3. Clone the repo
+## 5. Run the web application
+
+Once the setup is complete with data coming into our Cloudant DB, we can run the application to start viewing the device data values and look for trends. To run the application, we will clone the repo, add the Cloudant credentials and then run the application through terminal.
+
+#### Clone the repo
 
 In a directory of your choice, clone the repo:
 ```
 git clone https://github.com/IBM/iot-device-trend-analysis
 ```
 
-## 4. Configure .env file
+#### Configure .env file
 
 Create a `.env` file in the root directory of your clone of the project repository by copying the sample `.env.example` file using the following command:
 
@@ -123,7 +320,7 @@ Create a `.env` file in the root directory of your clone of the project reposito
   cp .env.example .env
   ```
 
-You will need to update the credentials for the Cloudant database which you created.
+You will need to update the `.env` file with credentials for the Cloudant DB which you created.
 
 The `.env` file will look something like the following:
 
@@ -134,19 +331,24 @@ The `.env` file will look something like the following:
   CLOUDANT_URL=
   ```
 
+#### Run the application
 
-## 5. Run Application
 
 Now you are ready to run your application. Go into this project's root directory
 + Run `pip install -r requirements.txt` to install the app's dependencies
 + Run `python run.py`
-+ Access the running app in a browser at <http://0.0.0.0:5000/>
++ Access the running app in a browser at <http://localhost:5000/>
 
 <p align="center">
   <img width="650"  src="readme_images/app-interface.png">
 </p>
 
-### Create dataset
+## 6. About the application
+
+The application is designed to create dataset from our Cloudant DB which we would like to plot and analyze, and then analyze through plots based on user inputs.  The application provides to view the raw data and view analysis on the data including trends and statistical plots. In this section, we will look at creating dataset, analyzing the data through plots and look at the code.
+
+
+#### Create dataset
 
 Before analyzing the data, you will need to define a dataset. This includes dates and device Ids from your Cloudant storage.  You can do this through the app by going to `Create Dataset` link on the main page.  This pulls all the `dates` and `deviceIds` directly from the Cloudant database.  You can make selection for these fields and give a name to your dataset.
 
@@ -155,7 +357,7 @@ Before analyzing the data, you will need to define a dataset. This includes date
 </p>
 
 
-Or you can manually edit the `datasets.json` to fill in your database info with dates, deviceIDs, iot database initial and name for the dataset. The file should look like below:
+Or you can manually edit the `datasets.json` to fill in your database info with dates, deviceIDs, IoT database initial and name for the dataset. The file should look like below:
 ```
 {
   "currentDataset": "New1",
@@ -179,37 +381,72 @@ Or you can manually edit the `datasets.json` to fill in your database info with 
 }
 ```
 
-### Analyze the data
+#### Analyze the data
 
-Once you have defined your dataset, you are ready to analyze your data through the different options present on the homepage. Each analysis will ask for device(s) and date(s) to generate the plot. Once your plot is generated, you can explore different plotly interactive options on the top right which can allow to download the plot, change the plot type and other actions.
+Once you have defined your dataset, you are ready to analyze your data through the different options present on the homepage. Each analysis will ask for device(s) and date(s) to generate the plot. Once your plot is generated, you can explore different plotly interactive options on the top right which can allow to download the plot, change the plot type and other actions.  The `Hourly Stats and Trends` options will allow to view how the hourly max, min, and average are behaving across time, with trend analysis showing change in the values per hour.
 
 <p align="center">
   <img width="650"  src="readme_images/hourly-stats.png">
 </p>
 
-## 6. Deploy to IBM Cloud
+#### Code Structure
 
-Edit the `manifest.yml` file in the folder that contains your code and replace with a unique name for your application. The name that you specify determines the application's URL, such as `your-application-name.mybluemix.net`. Additionally - update the service names so they match what you have in IBM Cloud. The relevant portion of the `manifest.yml` file looks like the following:
+This application built on Python Flask framework with Python to retrieve the JSON data from Cloudant DB, and with Javascript frontend to use the Plotly-js library.  Here we'll give a summary of the code file in the repo.
 
+* run.py:  This routes the pages on the web application and manages all the `GET` and `POST` commands made using Ajax on the Javascript scripts.
+
+* plotData.py:  This library pulls the data from Cloudant DB through API call and parses the data according to the function and input.  This library includes functions such as `Device_data_across_days` which pull data per device id for a start and end date, and `Hourly_stats_trends` which will create a json to plot the hourly stats and trends.
+
+* dataset.py:  This library provides functions to manage `datasets.json`, which includes pulling dataset information, adding dataset and setting the active dataset.
+
+* JS scripts (i.e static/scripts/deviceDataPerDay.js): There is a JS script for each page for this application. The javascript makes `GET` calls to update the page with dropdown options, ensures valid user input for the page, and makes the Ajax call to get the JSON data to plot.  Then it uses plotly-js library to create a plot for that page.
+
+* html (i.e /templates/devicePerDay.html): The html code is provided for each page, which is primarily to retrieve user input and display plots
+
+
+## 7. Deploy application to IBM Cloud
+
+To deploy the application to IBM Cloud, you will need Cloud Foundary CLI installed, so you can use command-line to deploy the application. The configuration for the deployment will be in `manifest.yml` file, which we'll update first.
+
+#### Update manifest.yml
+
+Here we will update the `manifest.yml` file in the folder and replace with a unique name for your application. The name that you specify determines the application's URL, such as `your-application-name.mybluemix.net`. Additionally - update the service names so they match what you have in IBM Cloud. The relevant portion of the `manifest.yml` file looks like the following:
 
 ```
 applications:
 - path: .
-  memory: 512M
+  memory: 256M
   instances: 1
   domain: mybluemix.net
   name: Iot-Analytics
-  host: slam-iot-analytics
+  host: iot-device-analytics
   disk_quota: 1024M
   buildpack: python_buildpack
   services:
   - cloudant
 ```
 
-In the command line use cloud foundry command to push the application to IBM Cloud:
+The memory of 256M will allow you to run the application with the `Lite` plan. However as data gets larger with the retrieval, you may have to increase memory to 512M or 1024M.
+
+#### Deploy using Cloud Foundry
+
+To deploy the application to IBM Cloud, we will use Cloud Foundry CLI. First login to your cloud foundry account
+```
+cf login
+```
+
+Next, in the command line use cloud foundry command to push the application to IBM Cloud:
 ```
 cf push
 ```
+This will take a few minutes and then provide the status of deployment.  You can then go to the url to view the application.
+
+
+## Extending the Code Pattern
+This code pattern can be extended in several ways:
+* Use for real world IoT device data
+* Create predictive analysis for the data
+* Update plots as device data streams into our database
 
 
 ## Troubleshooting
@@ -218,6 +455,18 @@ To troubleshoot your IBM Cloud application, use the logs. To see the logs, run:
 ```bash
 cf logs <application-name> --recent
 ```
+
+## Additional Resources
+* [IoT Python libray](https://github.com/ibm-watson-iot/iot-python)
+
+* [Using IBM Watson Analytics to visualize data from Watson IoT Platform](https://developer.ibm.com/recipes/tutorials/using-ibm-watson-analytics-to-visualize-data-from-watson-iot-platform/)
+
+* [Using IBM Watson Studio for Iot analysis](https://developer.ibm.com/recipes/tutorials/visualizing-and-understanding-data-from-ibm-watson-iot-platform-by-using-ibm-data-science-experience/)
+
+* [Create devices on IoT Platform](https://developer.ibm.com/recipes/tutorials/how-to-register-devices-in-ibm-iot-foundation/)
+
+* [Simulate device data](https://console.bluemix.net/docs/services/IoT/devices/device_sim.html#sim_device_data)
+
 
 # License
 
