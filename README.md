@@ -456,7 +456,7 @@ cf logs <application-name> --recent
 ```
 
 ## Additional Resources
-* [IoT Python libray](https://github.com/ibm-watson-iot/iot-python)
+* [IBM Watson IoT - Python library](https://github.com/ibm-watson-iot/iot-python)
 
 * [Using IBM Watson Analytics to visualize data from Watson IoT Platform](https://developer.ibm.com/recipes/tutorials/using-ibm-watson-analytics-to-visualize-data-from-watson-iot-platform/)
 
