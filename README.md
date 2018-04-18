@@ -390,11 +390,11 @@ Once you have defined your dataset, you are ready to analyze your data through t
 
 #### Code Structure
 
-This application built on Python Flask framework with Python to retrieve the JSON data from Cloudant DB, and with Javascript frontend to use the Plotly-js library.  Here we'll give a summary of the code file in the repo.
+This web application is built using Python Flask framework. The repo consists of Python functions to retrieve the JSON data from Cloudant DB, and Javascript frontend to use the Plotly-js library.  Here we'll give a summary of the code files in the repo.
 
 * `run.py`:  This routes the pages on the web application and manages all the `GET` and `POST` commands made using Ajax on the Javascript scripts.
 
-* `plotData.py`:  This library pulls the data from Cloudant DB through API call and parses the data according to the function and input.  This library includes functions such as `Device_data_across_days` which pull data per device id for a start and end date, and `Hourly_stats_trends` which will create a json to plot the hourly stats and trends.
+* `plotData.py`:  This library pulls the data from Cloudant DB through API call and parses the data according to the function and input.  This library includes functions such as `Device_data_across_days` which pull raw data per device id for a start and end date, and `Hourly_stats_trends` which will create a json to plot the hourly stats and trends.
 
 * `dataset.py`:  This library provides functions to manage `datasets.json`, which includes pulling dataset information, adding dataset and setting the active dataset.
 
