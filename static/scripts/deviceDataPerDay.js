@@ -153,18 +153,9 @@ function plotPerDay(data) {
     .then(
       function(gd) {
         Plotly.toImage(gd, {
-            height: 500,
-            width: 500
-          })
-          .then(
-            function(url) {
-              return Plotly.toImage(gd, {
-                format: 'jpeg',
-                height: 600,
-                width: 600
-              });
-            }
-          )
+          height: 500,
+          width: 500
+        })
       });
 
 };

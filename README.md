@@ -392,15 +392,86 @@ Once you have defined your dataset, you are ready to analyze your data through t
 
 This web application is built using Python Flask framework. The repo consists of Python functions to retrieve the JSON data from Cloudant DB, and Javascript frontend to use the Plotly-js library.  Here we'll give a summary of the code files in the repo.
 
-* `run.py`:  This routes the pages on the web application and manages all the `GET` and `POST` commands made using Ajax on the Javascript scripts.
+* `run.py`:  This routes the pages on the web application and manages all the `GET` and `POST` commands made using Ajax on the Javascript scripts.  These calls will then call the respective functions in `plotData` or `dataset` library to return the requested data to the web frontend.
 
-* `plotData.py`:  This library pulls the data from Cloudant DB through API call and parses the data according to the function and input.  This library includes functions such as `Device_data_across_days` which pull raw data per device id for a start and end date, and `Hourly_stats_trends` which will create a json to plot the hourly stats and trends.
+* `plotData.py`:  This library contains functions that pulls  data from Cloudant DB through API call and parses the data according to the function and input. These functions will return a list of JSON objects, where each object will have `timeStamp` field and data fields that we are interested in plotting.  This library includes functions such as `Device_data_across_days` which pull raw data per device id for a start and end date, and `Hourly_stats_trends` which will create a JSON to plot the hourly stats and trends
 
-* `dataset.py`:  This library provides functions to manage `datasets.json`, which includes pulling dataset information, adding dataset and setting the active dataset.
+For example the JSON object for `Device_data_across_days` will be as follow with the raw data:
+```
+{
+    "deviceCount": 85.0,
+    "timeStamp": "2018-01-16T10:35:41.635Z",
+    "connections": 43.0,
+    "deviceID": "19ca0a0b6",
+    "activeClients": 65.0
+}
+```
+The `Hourly_stats_trends` function will return JSON object with the max, min, average, and change in these value for every hour (i.e slope).  In addition it provides a time stamp for that hour right at 30 mins as the middle point for that hour.
+```
+{
+    "sumActiveClients": 253.0,
+    "plotTimeStamp": "2018-01-16T01:30:00.000Z",
+    "maxActiveClients": 84.0,
+    "date": "2018-01-16",
+    "avgSlopeLastHour": -22.4,
+    "minActiveClients": 26.0,
+    "maxSlopeLastHour": -18.0,
+    "hour": "01",
+    "minSlopeLastHour": -9.0,
+    "countEntries": 5,
+    "avgActiveClients": 50.6,
+    "deviceID": "19ca0a0b6"
+}
+```
 
-* `JS scripts (i.e static/scripts/deviceDataPerDay.js)`: There is a JS script for each page for this application. The javascript makes `GET` calls to update the page with dropdown options, ensures valid user input for the page, and makes the Ajax call to get the JSON data to plot.  Then it uses plotly-js library to create a plot for that page.
+* `dataset.py`:  This library provides functions to manage `datasets.json`, which includes pulling dataset information, adding dataset and setting the active dataset.  The functions updates and retrieve the `datasets.json` file accordingly.
 
-* `html (i.e /templates/devicePerDay.html)`: The html code is provided for each page, which is primarily to retrieve user input and display plots
+* `JS scripts (i.e static/scripts/deviceDataPerDay.js)`: There is a JS script for each page of this application. The javascript makes `GET` calls to update the page with dropdown options, ensures valid user input for the page, and makes the Ajax call to get the JSON data to plot.  Then it uses plotly-js library to create a plot for that page.
+
+To create plotly-js plots, we will first create traces for the plot, defining our `x` and `y` axis, and `type` and `name` for the trace. The `type` determines what type of plot we would like i.e scatter, bar, boxplot.  Next, we define `data` for the plots, as an array of these traces, and `layout` with the title for plot.
+```
+//define traces
+var activeClientsTrace = {
+  x: timeStampArray,
+  y: activeClientsArray,
+  type: "scatter",
+  name: "activeClients"
+};
+var deviceCountTrace = {
+  x: timeStampArray,
+  y: deviceCountArray,
+  type: "scatter",
+  name: "deviceCount",
+  visible: "legendonly"
+};
+var connectionsTrace = {
+  x: timeStampArray,
+  y: connectionsArray,
+  type: "scatter",
+  name: "connections",
+  visible: "legendonly"
+};
+var data = [activeClientsTrace, deviceCountTrace, connectionsTrace];
+var layout = {
+  title: "Device " + id + " from " + startDate + " to " + endDate
+};
+```
+
+With your `data` and `layout` defined, you are ready to call the `plotly` library to create the plot. The `plotly_div1` would be an `id` in your `html` page.
+```
+//create plot
+Plotly.newPlot('plotly_div1', data, layout)
+  .then(
+    function(gd) {
+      Plotly.toImage(gd, {
+        height: 500,
+        width: 500
+      })
+    });
+```
+
+
+* `html (i.e /templates/devicePerDay.html)`: The html code is provided for each page, which is primarily to retrieve user input and display plots.  It provides the css and JS with the ids and class for enhancing display and capturing user inputs.
 
 
 ## 7. Deploy application to IBM Cloud
@@ -466,6 +537,7 @@ cf logs <application-name> --recent
 
 * [Simulate device data](https://console.bluemix.net/docs/services/IoT/devices/device_sim.html#sim_device_data)
 
+[Plotly.js reference](https://plot.ly/javascript/reference/)
 
 # License
 
