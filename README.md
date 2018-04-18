@@ -516,7 +516,7 @@ This will take a few minutes and then provide the status of deployment.  You can
 This code pattern can be extended in several ways:
 * Use for real world IoT device data
 * Create predictive analysis for the data
-* Update plots as device data streams into our database
+* Update plots as device data streams into database
 
 
 ## Troubleshooting
@@ -537,7 +537,7 @@ cf logs <application-name> --recent
 
 * [Simulate device data](https://console.bluemix.net/docs/services/IoT/devices/device_sim.html#sim_device_data)
 
-[Plotly.js reference](https://plot.ly/javascript/reference/)
+* [Plotly.js reference](https://plot.ly/javascript/reference/)
 
 # License
 
