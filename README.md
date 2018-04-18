@@ -68,39 +68,39 @@ When the reader has completed this code pattern, they will understand how to:
 
 The IBM Watson IoT Platform service provides a dashboard to manage and configure devices, read data transmitted by the devices and numerous features to managing IoT devices. First, we would like to create the IBM Watson IoT Platform service in IBM Cloud.
 
-You can access IBM Cloud by going to https://console.bluemix.net/. If you do not have an IBM Cloud account you can create one.
+* You can access IBM Cloud by going to https://console.bluemix.net/. If you do not have an IBM Cloud account you can create one.
 
 <p align="center">
   <img width="800"  src="readme_images/register-ibm-cloud.png">
 </p>
 
-If you do have an IBM Cloud account or have created on, then login to create the service.  You can search for the service in `catalog` and choosing `Internet of things`.  Here we would like to pick the `Internet of Things Platform`
+* If you do have an IBM Cloud account or have created on, then login to create the service.  You can search for the service in `catalog` and choosing `Internet of things`.  Here we would like to pick the `Internet of Things Platform`
 
 <p align="center">
   <img width="800"  src="readme_images/catalog-iot-platform.png">
 </p>
 
 
-Or alternatively can go directly to the [link here]((https://console.bluemix.net/registration/?target=/catalog/services/internet-of-things-platform)) to create the service.  Give your service a name and choose the `region`, `organization` and `space`.
+* Or alternatively can go directly to the [link here]((https://console.bluemix.net/registration/?target=/catalog/services/internet-of-things-platform)) to create the service.  Give your service a name and choose the `region`, `organization` and `space`.
 
 <p align="center">
   <img width="800"  src="readme_images/create-iot-platform.png">
 </p>
 
-You can pick the `Lite` plan for this code pattern to get started with Internet of Things Platform.
+* You can pick the `Lite` plan for this code pattern to get started with Internet of Things Platform.
 
 
 <p align="center">
   <img width="800"  src="readme_images/iot-platform-plans.png">
 </p>
 
-Once your service is created, you can launch Watson IoT Platform by clicking the `Launch` button. Additionally, you can access documentation regarding the IoT Platform by going to `Docs` button.
+* Once your service is created, you can launch Watson IoT Platform by clicking the `Launch` button. Additionally, you can access documentation regarding the IoT Platform by going to `Docs` button.
 
 <p align="center">
   <img width="800"  src="readme_images/launch-iot-platform.png">
 </p>
 
-Once your Watson IoT Platform, it should take you to a similar dashboard below.  Now you are ready to create devices and simulate data for the application.
+* Once your Watson IoT Platform, it should take you to a similar dashboard below.  Now you are ready to create devices and simulate data for the application.
 
 <p align="center">
   <img width="800"  src="readme_images/iot-platform-dashboard.png">
@@ -232,25 +232,25 @@ First choose a `Device Type`.  Next, we will define the `Payload` to include the
 
 Now we are ready to store the IoT device data into a database.  The IBM Cloud provide several database options including relational and non-relational.  For our data, we would like to choose a NoSQL database such as Cloudant DB. The Cloudant DB provides for heavy read/write for an application, easy retrieval of data through API calls and a great interface to manage data directly. In this section, we will create a Cloudant DB on the IBM Cloud.
 
-Go to to your IBM Cloud dashboard.  You can go to `catalog` and under `Data & Analytics`, you can find `Cloudant NoSQL DB` service.
+* Go to to your IBM Cloud dashboard.  You can go to `catalog` and under `Data & Analytics`, you can find `Cloudant NoSQL DB` service.
 
 <p align="center">
   <img width="800"  src="readme_images/catalog-cloudant.png">
 </p>
 
-Or you can go directly to the [service here](https://console.bluemix.net/catalog/services/cloudant-nosql-db) to create the Cloudant DB. Give your Cloudant DB a `Service name`, and then choose the `region`, `organization` and `space`
+* Or you can go directly to the [service here](https://console.bluemix.net/catalog/services/cloudant-nosql-db) to create the Cloudant DB. Give your Cloudant DB a `Service name`, and then choose the `region`, `organization` and `space`
 
 <p align="center">
   <img width="800"  src="readme_images/create-cloudant.png">
 </p>
 
-You can pick from different plans, depending on the size of your data.  For this code pattern, we can use the `Lite` plan to get started.  Click `Create` at the bottom left to create the service in your IBM Cloud.
+* You can pick from different plans, depending on the size of your data.  For this code pattern, we can use the `Lite` plan to get started.  Click `Create` at the bottom left to create the service in your IBM Cloud.
 
 <p align="center">
   <img width="800"  src="readme_images/cloudant-plans.png">
 </p>
 
-This has now created the service.  Through this service, you can launch the Cloudant interface, retrieve credentials for the service and create connections to applications in your IBM Cloud.
+* This has now created the service.  Through this service, you can launch the Cloudant interface, retrieve credentials for the service and create connections to applications in your IBM Cloud.
 
 
 <p align="center">
@@ -258,7 +258,7 @@ This has now created the service.  Through this service, you can launch the Clou
 </p>
 
 
-To get service credentials, go to the `Service credentials` option on the left. Here you can generate credentials for the service by clicking on `New credentials`.  Go ahead and create credentials for the service as we will need those for our application.
+* To get service credentials, go to the `Service credentials` option on the left. Here you can generate credentials for the service by clicking on `New credentials`.  Go ahead and create credentials for the service as we will need those for our application.
 
 <p align="center">
   <img width="800"  src="readme_images/cloudant-credentials.png">
