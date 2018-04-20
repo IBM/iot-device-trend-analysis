@@ -1,16 +1,16 @@
 # IoT device data value trend and visualization app
 
-In this code pattern, we will setup and create a web application to visualize IoT device data and view trends and stats of device fields across days. The Iot industries are looking for ways to analyze the use of Iot devices, and would like better understand the usage of devices. This code pattern will demonstrate using IBM solutions to read and store IoT device data, and then build an application on top of it. The code pattern uses services offered on IBM Cloud such as IBM Watson IoT Platform and Cloudant database, in addition to deploying the application to the IBM Cloud.  Once setup, the application displays the time-series field data as plots, showing device data trends and statistical analysis.
+In this code pattern, we will setup and create a web application to visualize IoT device data and view trends and stats of device fields across days. The IoT industries are looking for ways to analyze the use of Iot devices, and would like better understand the usage of devices. This code pattern will demonstrate using IBM solutions to read and store IoT device data, and then build an application on top of it. The code pattern uses services offered on IBM Cloud such as IBM Watson IoT Platform and Cloudant DB, in addition to deploying the application to the IBM Cloud.  Once setup, the application displays the time-series field data as plots, showing device data trends and statistical analysis.
 
-First, we will create an IBM Watson IoT Platform service which provides a platform to manage IoT devices and the data being sent across those devices.  This code pattern provides directions on creating dummy IoT devices in the Watson IoT Platform, and then simulating data for those devices using a simulation feature in the Watson IoT Platform.  We are interested in certain fields in payload for the devices, for which the application is designed to read data.
+First, we will create an IBM Watson IoT Platform service which provides a platform to manage IoT devices and the data being sent across those devices.  This code pattern provides directions on creating dummy IoT devices in the Watson IoT Platform, and then simulating data for those devices using a simulation feature in the IoT platform.  We are interested in certain fields as part of payload for the devices to come through, as the application is designed to read those fields.
 
-Next, we will store the devices' fields data from the Watson IoT platform into a Cloudant database.  The Cloudant database is a NoSQL JSON document store that is optimized for handling heavy workloads of read and write in the cloud.  In this code pattern, we will walk through the process of creating a Cloudant service on the IBM Cloud, which provides a straight forward way to setting up the database, and provides credentials to access it through applications.  The Cloudant interface allows to manage and view our data in different databases.  Once our Cloudant database is created, we will go through steps on configuring Watson IoT Platform to store the IoT device data into Cloudant databases.
+Next, we will store the devices' fields data from the Watson IoT platform into Cloudant DB.  The Cloudant DB is a NoSQL JSON document store that is optimized for handling heavy workloads of read and write in the cloud.  In this code pattern, we will walk through the process of creating a Cloudant DB service on the IBM Cloud, and retrieve credentials to access it through applications.  The Cloudant DB interface can be launched through the service, which allows to directly manage and view our data.  Once our Cloudant DB is created, we will go through steps on configuring Watson IoT Platform to store the IoT device data into it.
 
-Once, we have completed the setup with our data coming through the Watson IoT Platform and into the Cloudant database, we are ready to run the application to view the data.  The application first requests the user to create a dataset based on the data now being stored in the Cloudant database.  This can be viewed as our first layer of filtering assuming the data scientist/analyst would like to focus on particular devices and dates. Especially considering the data coming through is large, it can be divided into different datasets for more focused analysis. After creating a dataset, the user can create different visualizations for the data.  
+Once we have completed the setup, with our data coming through the Watson IoT Platform and into the Cloudant DB, we are ready to run the application to view the visualizations of data.  The application first requests the user to create a dataset based on the data now being stored in the Cloudant DB.  This can be viewed as our first layer of filtering assuming the IoT data scientist/analyst would like to focus on particular devices and dates. The device data could get large so it can be divided into different datasets for more focused analysis.
 
-The user can view the raw data for a device's field across time, or different analytical plot for the devices across days.  The analytical plots include creating hourly trends plot that capture the behavior of the data per hour. This includes looking at the max, min and moving average of the data. This allows to capture the general trend of the field across time and capture any anomalies.  Other analytical plots include comparing device's field stats (min, median, max) across days and viewing correlation plot between fields for a device across days.  The Plotly-js plots are used to create these visualizations of the data based on user inputs.  The Plotly-js provides a great way to display data visually through numerous plot types and ability to manage and enhance on plots.
+After creating a dataset, the user can use this application to create different visualizations for the data. This includes viewing the raw data for a device's data value across time, and then creating hourly trends plot that capture the behavior of the data per hour. The hourly trends looking at the max, min and moving average of the data which allows to capture the general trend of the field across time and capture any anomalies.  Other analytical plots include comparing device's field stats (min, median, max) across days and viewing correlation between fields for a device across days.  The Plotly.js library is used to create these visualizations of the data based on user inputs.  The Plotly.js provides a great way to display data visually through numerous plot types and ability to manage and enhance on plots.
 
-This web application is built on Python Flask framework, with Javascript(JS) and HTML frontend.  The python backend allows to create libraries (plotData.py and dataset.py), which parse and analyze the JSON data from the Cloudant database. The frontend application provides a separate page for each plot type, and an associated JS script for each page in the `scripts` folder under `static` (i.e deviceCorrelationAnalysis.js).  The user inputs are sent through an Ajax call to the python backend (run.py) which retrieves the respective data and returns it. This includes the data to be plotted, which is captured by the JS script for the page and shows how to plot using the Plotly-js library. These plots are then displayed through the HTML page for the plot.  
+This web application is built on Python Flask framework, with Javascript(JS) and HTML frontend.  The Python backend allows to create libraries (plotdata.py and dataset.py), which parse and analyze the JSON data from the Cloudant database. The frontend application provides a separate page for each plot type, and an associated JS script for each page in the `scripts` folder under `static` (i.e deviceCorrelationAnalysis.js).  The user inputs are sent through an Ajax call to the Python backend (run.py) which retrieves the respective data and returns it. This includes the data to be plotted, which is captured by the JS script for the page and shows how to plot using the Plotly.js library. These plots are then displayed through the HTML page for the plot.  
 
 This code pattern can be useful to developer's looking to enhance IoT analysis skill, for IoT data scientists/analysts looking to create their own customized application, and anyone with interest in creating a visual analytical application.
 
@@ -19,7 +19,7 @@ When the reader has completed this code pattern, they will understand how to:
 * Setup IoT devices on IBM Watson IoT Platform and simulate device's data
 * Create Cloudant service on IBM Cloud, and using as data store for IoT device data
 * Develop an application to parse JSON data from Cloudant DB using Python
-* Display Plotly-js plots through a web application
+* Display Plotly.js plots through a web application
 
 
 ## Architecture Flow
@@ -30,7 +30,7 @@ When the reader has completed this code pattern, they will understand how to:
 
 
 1. The IoT device data is stored in Cloudant database from the IBM Watson IoT Platform
-2. The data from Cloudant database is used to create plotly visualizatons
+2. The data from Cloudant database is used to create Plotly visualizatons
 3. The plot is displayed through the Web UI based on user requests
 4. The user can view the plots and perform analysis on each plot through the web UI
 
@@ -39,7 +39,7 @@ When the reader has completed this code pattern, they will understand how to:
 
 + [IBM Watson IoT Platform](https://console.bluemix.net/registration/?target=/catalog/services/internet-of-things-platform)
 + [Cloudant](https://console.bluemix.net/catalog/services/cloudant-nosql-db)
-+ [Plotly js](https://plot.ly/javascript/)
++ [Plotly.js](https://plot.ly/javascript/)
 
 
 ## Prerequisite
@@ -382,7 +382,7 @@ Or you can manually edit the `datasets.json` to fill in your database info with 
 
 #### Analyze the data
 
-Once you have defined your dataset, you are ready to analyze your data through the different options present on the homepage. Each analysis will ask for device(s) and date(s) to generate the plot. Once your plot is generated, you can explore different plotly interactive options on the top right which can allow to download the plot, change the plot type and other actions.  The `Hourly Stats and Trends` options will allow to view how the hourly max, min, and average are behaving across time, with trend analysis showing change in the values per hour.
+Once you have defined your dataset, you are ready to analyze your data through the different options present on the homepage. Each analysis will ask for device(s) and date(s) to generate the plot. Once your plot is generated, you can explore different Plotly interactive options on the top right which can allow to download the plot, change the plot type and other actions.  The `Hourly Stats and Trends` options will allow to view how the hourly max, min, and average are behaving across time, with trend analysis showing change in the values per hour.
 
 <p align="center">
   <img width="650"  src="readme_images/hourly-stats.png">
@@ -390,11 +390,11 @@ Once you have defined your dataset, you are ready to analyze your data through t
 
 #### Code Structure
 
-This web application is built using Python Flask framework. The repo consists of Python functions to retrieve the JSON data from Cloudant DB, and Javascript frontend to use the Plotly-js library.  Here we'll give a summary of the code files in the repo.
+This web application is built using Python Flask framework. The repo consists of Python functions to retrieve the JSON data from Cloudant DB, and Javascript frontend to use the Plotly.js library.  Here we'll give a summary of the code files in the repo.
 
-* `run.py`:  This routes the pages on the web application and manages all the `GET` and `POST` commands made using Ajax on the Javascript scripts.  These calls will then call the respective functions in `plotData` or `dataset` library to return the requested data to the web frontend.
+* `run.py`:  This routes the pages on the web application and manages all the `GET` and `POST` commands made using Ajax on the Javascript scripts.  These calls will then call the respective functions in `plotdata` or `dataset` library to return the requested data to the web frontend.
 
-* `plotData.py`:  This library contains functions that pulls  data from Cloudant DB through API call and parses the data according to the function and input. These functions will return a list of JSON objects, where each object will have `timeStamp` field and data fields that we are interested in plotting.  This library includes functions such as `Device_data_across_days` which pull raw data per device id for a start and end date, and `Hourly_stats_trends` which will create a JSON to plot the hourly stats and trends
+* `plotdata.py`:  This library contains functions that pulls  data from Cloudant DB through API call and parses the data according to the function and input. These functions will return a list of JSON objects, where each object will have `timeStamp` field and data fields that we are interested in plotting.  This library includes functions such as `Device_data_across_days` which pull raw data per device id for a start and end date, and `Hourly_stats_trends` which will create a JSON to plot the hourly stats and trends
 
 For example the JSON object for `Device_data_across_days` will be as follow with the raw data:
 ```
@@ -426,9 +426,9 @@ The `Hourly_stats_trends` function will return JSON object with the max, min, av
 
 * `dataset.py`:  This library provides functions to manage `datasets.json`, which includes pulling dataset information, adding dataset and setting the active dataset.  The functions updates and retrieve the `datasets.json` file accordingly.
 
-* `JS scripts (i.e static/scripts/deviceDataPerDay.js)`: There is a JS script for each page of this application. The javascript makes `GET` calls to update the page with dropdown options, ensures valid user input for the page, and makes the Ajax call to get the JSON data to plot.  Then it uses plotly-js library to create a plot for that page.
+* `JS scripts (i.e static/scripts/deviceDataPerDay.js)`: There is a JS script for each page of this application. The javascript makes `GET` calls to update the page with dropdown options, ensures valid user input for the page, and makes the Ajax call to get the JSON data to plot.  Then it uses Plotly.js library to create a plot for that page.
 
-To create plotly-js plots, we will first create traces for the plot, defining our `x` and `y` axis, and `type` and `name` for the trace. The `type` determines what type of plot we would like i.e scatter, bar, boxplot.  Next, we define `data` for the plots, as an array of these traces, and `layout` with the title for plot.
+To create Plotly.js plots, we will first create traces for the plot, defining our `x` and `y` axis, and `type` and `name` for the trace. The `type` determines what type of plot we would like i.e scatter, bar, boxplot.  Next, we define `data` for the plots, as an array of these traces, and `layout` with the title for plot.
 ```
 //define traces
 var activeClientsTrace = {
@@ -457,7 +457,7 @@ var layout = {
 };
 ```
 
-With your `data` and `layout` defined, you are ready to call the `plotly` library to create the plot. The `plotly_div1` would be an `id` in your `html` page.
+With your `data` and `layout` defined, you are ready to call the `Plotly` library to create the plot. The `plotly_div1` would be an `id` in your `html` page.
 ```
 //create plot
 Plotly.newPlot('plotly_div1', data, layout)

@@ -16,7 +16,7 @@ from flask import Flask, jsonify, render_template, json, Response, request
 import os
 
 import dataset
-import plotData
+import plotdata
 
 #create flask application
 app = Flask(__name__)
@@ -99,7 +99,7 @@ def Retrieve_per_day():
         print("retreived data: " + str(inputDeviceId) + " | " + str(inputDate) )
 
     #get data for device fields per day
-    dataArray = plotData.Device_data_per_day(inputDeviceId, inputDate)
+    dataArray = plotdata.Device_data_per_day(inputDeviceId, inputDate)
 
     #create and return the output json
     output = {"dataArray": dataArray, "deviceId": inputDeviceId, "date" : inputDate}
@@ -129,7 +129,7 @@ def Retrieve_across_days():
         print("retreived data: " + str(inputDeviceId) + " | " + str(inputStartDate) + " | " + str(inputEndDate))
 
     #get data for device fields across days
-    dataArray = plotData.Device_data_across_days(inputDeviceId, inputStartDate, inputEndDate)
+    dataArray = plotdata.Device_data_across_days(inputDeviceId, inputStartDate, inputEndDate)
 
     #create and return the output json
     output = {"dataArray": dataArray, "deviceId": inputDeviceId, "startdate" : inputStartDate, "enddate" : inputEndDate}
@@ -160,10 +160,10 @@ def Retrieve_hourly_stats_trends():
         print("retreived data: " + str(inputDeviceId) + " | " + str(inputField) + " | " + str(inputStartDate) + " | " + str(inputEndDate))
 
     #get data for device fields across days
-    dataArray = plotData.Device_data_across_days(inputDeviceId, inputStartDate, inputEndDate)
+    dataArray = plotdata.Device_data_across_days(inputDeviceId, inputStartDate, inputEndDate)
 
     #get hourly stats and trends for dataArray
-    hourlyData = plotData.Hourly_stats_trends(dataArray, inputField)
+    hourlyData = plotdata.Hourly_stats_trends(dataArray, inputField)
 
     #create and return the output json
     output = {"dataArray": dataArray, "hourlyData": hourlyData, "deviceId": inputDeviceId, "startdate" : inputStartDate, "enddate" : inputEndDate, "field": inputField}
@@ -198,13 +198,13 @@ def Retrieve_device_stats():
     deviceIds = inputDeviceIds.split(",")
 
     #get data for devices across days
-    dataArray = plotData.Devices_data_across_days(deviceIds, inputStartDate, inputEndDate)
+    dataArray = plotdata.Devices_data_across_days(deviceIds, inputStartDate, inputEndDate)
 
     #get plot data to compare devices
-    plotDataArray = plotData.Devices_field_data(dataArray, deviceIds, inputField)
+    plotdataArray = plotdata.Devices_field_data(dataArray, deviceIds, inputField)
 
     #create and return the output json
-    output = {"dataArray": dataArray, "deviceIds": deviceIds, "plotData": plotDataArray, "startdate": inputStartDate, "enddate" : inputEndDate, "field": inputField}
+    output = {"dataArray": dataArray, "deviceIds": deviceIds, "plotdata": plotdataArray, "startdate": inputStartDate, "enddate" : inputEndDate, "field": inputField}
     return json.dumps(output)
 
 
