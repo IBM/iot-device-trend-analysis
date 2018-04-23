@@ -72,9 +72,9 @@ Further reading
 
 ## Deploy to IBM Cloud button
 
-Create an [IBM Cloud account](https://console.bluemix.net/registration/?target=%2Fdashboard%2Fapps) and directly deploy the application using the button bellow.
+Create an [IBM Cloud account](https://console.bluemix.net/registration/?target=%2Fdashboard%2Fapps) and directly deploy the application using the button bellow.  This will create the IBM Watson IoT Platform and Cloudant DB services for you and connect to your application.
 
-[![Deploy to Bluemix](https://metrics-tracker.mybluemix.net/stats/07ed9a9864925f6dcb2c9d5849c329fc/button.svg)](https://bluemix.net/devops/setup/deploy?repository=https://github.com/raheelzubairy/iot-device-trend-analysis)
+[![Deploy to Bluemix](https://metrics-tracker.mybluemix.net/stats/07ed9a9864925f6dcb2c9d5849c329fc/button.svg)](https://bluemix.net/devops/setup/deploy?repository=https://github.com/IBM/iot-device-trend-analysis)
 
 You can follow the direction to [create and simulate devices on IoT Platform](#2-create-and-simulate-devices-on-iot-platform).  And then follow steps to
 [configure Cloudant DB as data store for IoT device data](#4-configure-cloudant-db-as-data-store-for-iot-device-data).
@@ -554,6 +554,32 @@ cf logs <application-name> --recent
 * [Simulate device data](https://console.bluemix.net/docs/services/IoT/devices/device_sim.html#sim_device_data)
 
 * [Plotly.js reference](https://plot.ly/javascript/reference/)
+
+
+## Privacy Notice
+
+This web application includes metrics tracker package configured to track deployments to [IBM Cloud](https://www.bluemix.net/) and other platforms. The following information is sent to a [Deployment Tracker](https://github.com/IBM/metrics-collector-service) service on each deployment:
+
+* Python package version
+* Python repository URL
+* Application Name (`application_name`)
+* Application GUID (`application_id`)
+* Application instance index number (`instance_index`)
+* Space ID (`space_id`) or OS username
+* Application Version (`application_version`)
+* Application URIs (`application_uris`)
+* Cloud Foundry API (`cf_api`)
+* Labels and names of bound services
+* Number of instances for each bound service and associated plan information
+* Metadata in the `repository.yaml` file
+
+This data is collected from the `run.py` and `repository.yaml` file in the sample application and the `VCAP_APPLICATION` and `VCAP_SERVICES` environment variables in IBM Cloud and other Cloud Foundry platforms. This data is used by IBM to track metrics around deployments of sample applications to IBM Cloud to measure the usefulness of our examples, so that we can continuously improve the content we offer to you. Only deployments of sample applications that include code to ping the Deployment Tracker service will be tracked.
+
+## Disabling Deployment Tracking
+
+To disable tracking, simply remove ``metrics_tracker_client.track()`` from the
+``run.py`` file in the top level directory.
+
 
 # License
 

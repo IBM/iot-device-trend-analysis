@@ -1,0 +1,10 @@
+id: iot-device-trend-analysis
+event_id: web
+event_organizer: dev-journeys
+runtimes:
+  - Cloud Foundry
+services: 
+ - Internet of Things Platform
+ - Cloudant NoSQL DB
+language:
+  - python

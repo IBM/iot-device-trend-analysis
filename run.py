@@ -14,9 +14,10 @@
 
 from flask import Flask, jsonify, render_template, json, Response, request
 import os
-
+import metrics_tracker_client
 import dataset
 import plotdata
+
 
 #create flask application
 app = Flask(__name__)
@@ -335,4 +336,5 @@ def Get_db_deviceids():
 
 port = os.getenv('PORT', '5000')
 if __name__ == "__main__":
+    metrics_tracker_client.track()
 	app.run(host='0.0.0.0', port=int(port))
