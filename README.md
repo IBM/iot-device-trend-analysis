@@ -51,6 +51,10 @@ When the reader has completed this code pattern, they will understand how to:
 
 ## Sections
 
+* [Deploy to IBM Cloud button](deploy-to-ibm-cloud-button)
+
+Steps to run the application
+
 1. [Create IBM Watson IoT Platform service on IBM Cloud](#1-create-ibm-watson-iot-platform-service-on-ibm-cloud)
 2. [Create and simulate devices on IoT Platform](#2-create-and-simulate-devices-on-iot-platform)
 3. [Create Cloudant DB on IBM Cloud](#3-create-cloudant-db-on-ibm-cloud)
@@ -59,10 +63,22 @@ When the reader has completed this code pattern, they will understand how to:
 6. [About the application](#6-about-the-application)
 7. [Deploy application to IBM Cloud](#7-deploy-application-to-ibm-cloud)
 
+Further reading
 
 * [Extending the Code Pattern](#-extending-the-code-pattern)
 * [Troubleshooting](#-troubleshooting)
 * [Additional Resources](#-additional-resources)
+
+
+## Deploy to IBM Cloud button
+
+Create an [IBM Cloud account](https://console.bluemix.net/registration/?target=%2Fdashboard%2Fapps) and directly deploy the application using the button bellow.
+
+[![Deploy to Bluemix](https://metrics-tracker.mybluemix.net/stats/07ed9a9864925f6dcb2c9d5849c329fc/button.svg)](https://bluemix.net/devops/setup/deploy?repository=https://github.com/raheelzubairy/iot-device-trend-analysis)
+
+You can follow the direction to [create and simulate devices on IoT Platform](#2-create-and-simulate-devices-on-iot-platform).  And then follow steps to
+[configure Cloudant DB as data store for IoT device data](#4-configure-cloudant-db-as-data-store-for-iot-device-data).
+
 
 ## 1. Create IBM Watson IoT Platform service on IBM Cloud
 
