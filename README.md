@@ -1,4 +1,6 @@
-# IoT device data value trend and visualization app
+![IBM Cloud Deployments](https://metrics-tracker.mybluemix.net/stats/f17d1882d12f932765c92d01a533edf5/badge.svg)
+
+# IoT device data trend and visualization app
 
 In this code pattern, we will setup and create a web application to visualize IoT device data and view trends and stats of device fields across days. The IoT industries are looking for ways to analyze the use of IoT devices, and would like better understand the usage of devices. This code pattern will demonstrate using IBM solutions to read and store IoT device data, and then build an application on top of it. The code pattern uses services offered on IBM Cloud such as IBM Watson IoT Platform and Cloudant DB, in addition to deploying the application to the IBM Cloud.  Once setup, the application displays the time-series field data as plots, showing device data trends and statistical analysis.
 
@@ -51,7 +53,7 @@ When the reader has completed this code pattern, they will understand how to:
 
 ## Sections
 
-* [Deploy to IBM Cloud button](deploy-to-ibm-cloud-button)
+* [Deploy to IBM Cloud button](#deploy-to-ibm-cloud-button)
 
 Steps to run the application
 
@@ -65,19 +67,50 @@ Steps to run the application
 
 Further reading
 
-* [Extending the Code Pattern](#-extending-the-code-pattern)
-* [Troubleshooting](#-troubleshooting)
-* [Additional Resources](#-additional-resources)
-
+* [Extending the Code Pattern](#extending-the-code-pattern)
+* [Troubleshooting](#troubleshooting)
+* [Additional Resources](#additional-resources)
+* [Privacy Notice](#privacy-notice)
 
 ## Deploy to IBM Cloud button
 
+You can deploy the application and create services directly on IBM Cloud using the 'Deploy to IBM Cloud' button.  This is alternative to creating services individually and then deploying the application using cloud foundry.
+
 Create an [IBM Cloud account](https://console.bluemix.net/registration/?target=%2Fdashboard%2Fapps) and directly deploy the application using the button bellow.  This will create the IBM Watson IoT Platform and Cloudant DB services for you and connect to your application.
 
-[![Deploy to Bluemix](https://metrics-tracker.mybluemix.net/stats/07ed9a9864925f6dcb2c9d5849c329fc/button.svg)](https://bluemix.net/devops/setup/deploy?repository=https://github.com/IBM/iot-device-trend-analysis)
+[![Deploy to Bluemix](https://metrics-tracker.mybluemix.net/stats/f17d1882d12f932765c92d01a533edf5/button.svg)](https://bluemix.net/devops/setup/deploy?repository=https://github.com/IBM/iot-device-trend-analysis)
 
-You can follow the direction to [create and simulate devices on IoT Platform](#2-create-and-simulate-devices-on-iot-platform).  And then follow steps to
-[configure Cloudant DB as data store for IoT device data](#4-configure-cloudant-db-as-data-store-for-iot-device-data).
+* Here you can provide your application and toolchain a name. You can choose the `Region`, `Organization` and `Space` where you would like to deploy the application. Then click `Deploy`.
+
+<p align="center">
+  <img width="800"  src="readme_images/deploy-to-ibm-cloud.png">
+</p>
+
+* Next, you can view your toolchain.  We can see the progress of deployment by clicking `Delivery Pipeline`.
+<p align="center">
+  <img width="800"  src="readme_images/view-toolchain.png">
+</p>
+
+* The delivery pipeline will show the status of each stage.  You can view logs and history if any issues.  Once all stages pass, then your application has been successfully deployed.
+
+<p align="center">
+  <img width="800"  src="readme_images/view-delivery-pipeline.png">
+</p>
+
+* In your IBM Cloud dashboard, you can now find your application.  You can open the application which provides an overview of the application as host in IBM Cloud.
+
+<p align="center">
+  <img width="800"  src="readme_images/application-view.png">
+</p>
+
+* You can view the services connected to this application by clicking `Connections` on the left menu.
+
+<p align="center">
+  <img width="800"  src="readme_images/application-connections.png">
+</p>
+
+Once your application and services are created in IBM Cloud,  you can follow the directions to [create and simulate devices on IoT Platform](#2-create-and-simulate-devices-on-iot-platform).  And then follow steps to
+[configure Cloudant DB as data store for IoT device data](#4-configure-cloudant-db-as-data-store-for-iot-device-data).  Once you have completed these steps, you should be able to create dataset in your application to start viewing trends and analysis of the IoT device data.
 
 
 ## 1. Create IBM Watson IoT Platform service on IBM Cloud
