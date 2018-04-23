@@ -2,6 +2,9 @@ declared-services:
   cloudant:
     label: cloudantNoSQLDB
     plan: Lite
+  iot-service:
+    label: iotf-service
+    plan: iotf-service-free
 applications:
 - path: .
   memory: 256M
@@ -13,3 +16,4 @@ applications:
   buildpack: python_buildpack
   services:
   - cloudant
+  - iot-service
