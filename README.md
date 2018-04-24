@@ -39,41 +39,24 @@ When the reader has completed this code pattern, they will understand how to:
 
 ## Included Components
 
-+ [IBM Watson IoT Platform](https://console.bluemix.net/registration/?target=/catalog/services/internet-of-things-platform)
-+ [Cloudant](https://console.bluemix.net/catalog/services/cloudant-nosql-db)
-+ [Plotly.js](https://plot.ly/javascript/)
++ [IBM Watson IoT Platform](https://console.bluemix.net/registration/?target=/catalog/services/internet-of-things-platform)This service is the hub for IBM Watson IoT and lets you communicate with and consume data from connected devices and gateways. Use the built-in web console dashboards to monitor your IoT data and devices.
++ [Cloudant NoSQL DB](https://console.bluemix.net/catalog/services/cloudant-nosql-db): A fully managed data layer designed for modern web and mobile applications that leverages a flexible JSON schema.
++ [Plotly.js](https://plot.ly/javascript/) plotly.js is a high-level, declarative charting library with 20 chart types, including statistical graphs, 3D charts and SVG maps
+
+## Featured technologies
++ [Python](https://www.python.org/) Python is a programming language that lets you work more quickly and integrate your systems more effectively.
++ [JavaScript](https://www.python.org/) JavaScript is a prototype-based, dynamic language, most well-known as the scripting language for Web pages
+
+# Watch the Video
+
+[![](http://img.youtube.com/vi/AVD99LVwnKE/0.jpg)](https://www.youtube.com/watch?v=AVD99LVwnKE)
 
 
-## Prerequisite
+# Steps
 
-- [Python](https://www.python.org/downloads/)
-- [IBM Cloud account](https://console.bluemix.net/registration/?target=%2Fdashboard%2Fapps)
-- [Cloud Foundary CLI](https://docs.cloudfoundry.org/cf-cli/install-go-cli.html)
+Use the ``Deploy to IBM Cloud`` button **OR** create the services and deploy the application locally.
 
-
-## Sections
-
-* [Deploy to IBM Cloud button](#deploy-to-ibm-cloud-button)
-
-#### Steps to setup and run the application
-
-1. [Create IBM Watson IoT Platform service on IBM Cloud](#1-create-ibm-watson-iot-platform-service-on-ibm-cloud)
-2. [Create and simulate devices on IoT Platform](#2-create-and-simulate-devices-on-iot-platform)
-3. [Create Cloudant DB on IBM Cloud](#3-create-cloudant-db-on-ibm-cloud)
-4. [Configure Cloudant DB as data store for IoT device data](#4-configure-cloudant-db-as-data-store-for-iot-device-data)
-5. [Run the web application](#5-run-the-web-application)
-6. [About the application](#6-about-the-application)
-7. [Deploy application to IBM Cloud](#7-deploy-application-to-ibm-cloud)
-
-#### Further reading
-
-* [Extending the Code Pattern](#extending-the-code-pattern)
-* [Troubleshooting](#troubleshooting)
-* [Additional Resources](#additional-resources)
-* [Privacy Notice](#privacy-notice)
-
-
-# Deploy to IBM Cloud button
+# Deploy to IBM Cloud
 
 You can deploy the application and create services directly on IBM Cloud using the 'Deploy to IBM Cloud' button.  This is alternative to creating services individually and then deploying the application using cloud foundry.
 
@@ -98,7 +81,7 @@ Create an [IBM Cloud account](https://console.bluemix.net/registration/?target=%
   <img width="800"  src="readme_images/view-delivery-pipeline.png">
 </p>
 
-* In your IBM Cloud dashboard, you can now find your application.  You can open the application which provides an overview of the application as host in IBM Cloud.
+* In your IBM Cloud dashboard, you can now find your application.  You can open the application which provides an overview of the application as hosted in IBM Cloud.
 
 <p align="center">
   <img width="800"  src="readme_images/application-view.png">
@@ -110,10 +93,30 @@ Create an [IBM Cloud account](https://console.bluemix.net/registration/?target=%
   <img width="800"  src="readme_images/application-connections.png">
 </p>
 
-Once your application and services are created in IBM Cloud,  you can follow the directions to [create and simulate devices on IoT Platform](#2-create-and-simulate-devices-on-iot-platform).  And then follow steps to
-[configure Cloudant DB as data store for IoT device data](#4-configure-cloudant-db-as-data-store-for-iot-device-data).  Once you have completed these steps, you should be able to create dataset in your application to start viewing trends and analysis of the IoT device data.
+Once your application and services are created in IBM Cloud,  you will need to do the following to setup your IoT data in the Cloudant DB:
+* [Create and simulate devices on IoT Platform](#2-create-and-simulate-devices-on-iot-platform)
+* [Configure Cloudant DB as data store for IoT device data](#4-configure-cloudant-db-as-data-store-for-iot-device-data)
 
-# Steps to setup and run the application
+Once you have completed these steps, you should be able to create dataset in your application to start viewing trends and analysis of the IoT device data.
+
+# Run and deploy locally
+> NOTE: These steps are only needed when running locally instead of using the ``Deploy to IBM Cloud`` button.
+
+#### Prerequisites
+
+- [Python](https://www.python.org/downloads/)
+- [IBM Cloud account](https://console.bluemix.net/registration/?target=%2Fdashboard%2Fapps)
+- [Cloud Foundary CLI](https://docs.cloudfoundry.org/cf-cli/install-go-cli.html)
+
+#### Steps
+1. [Create IBM Watson IoT Platform service on IBM Cloud](#1-create-ibm-watson-iot-platform-service-on-ibm-cloud)
+2. [Create and simulate devices on IoT Platform](#2-create-and-simulate-devices-on-iot-platform)
+3. [Create Cloudant DB on IBM Cloud](#3-create-cloudant-db-on-ibm-cloud)
+4. [Configure Cloudant DB as data store for IoT device data](#4-configure-cloudant-db-as-data-store-for-iot-device-data)
+5. [Run the web application](#5-run-the-web-application)
+6. [About the application](#6-about-the-application)
+7. [Deploy application to IBM Cloud](#7-deploy-application-to-ibm-cloud)
+
 
 ## 1. Create IBM Watson IoT Platform service on IBM Cloud
 
@@ -569,6 +572,15 @@ This code pattern can be extended in several ways:
 * Create predictive analysis for the data
 * Update plots as device data streams into database
 
+## Links
+* [Demo on Youtube](https://youtu.be/AVD99LVwnKE)
+* [IBM Watson IoT - Python library](https://github.com/ibm-watson-iot/iot-python)
+* [Using IBM Watson Analytics to visualize data from Watson IoT Platform](https://developer.ibm.com/recipes/tutorials/using-ibm-watson-analytics-to-visualize-data-from-watson-iot-platform/)
+* [Using IBM Watson Studio for Iot analysis](https://developer.ibm.com/recipes/tutorials/visualizing-and-understanding-data-from-ibm-watson-iot-platform-by-using-ibm-data-science-experience/)
+* [Create devices on IoT Platform](https://developer.ibm.com/recipes/tutorials/how-to-register-devices-in-ibm-iot-foundation/)
+* [Simulate device data](https://console.bluemix.net/docs/services/IoT/devices/device_sim.html#sim_device_data)
+* [Plotly.js reference](https://plot.ly/javascript/reference/)
+
 
 ## Troubleshooting
 To troubleshoot your IBM Cloud application, use the logs. To see the logs, run:
@@ -576,20 +588,6 @@ To troubleshoot your IBM Cloud application, use the logs. To see the logs, run:
 ```bash
 cf logs <application-name> --recent
 ```
-
-## Additional Resources
-* [IBM Watson IoT - Python library](https://github.com/ibm-watson-iot/iot-python)
-
-* [Using IBM Watson Analytics to visualize data from Watson IoT Platform](https://developer.ibm.com/recipes/tutorials/using-ibm-watson-analytics-to-visualize-data-from-watson-iot-platform/)
-
-* [Using IBM Watson Studio for Iot analysis](https://developer.ibm.com/recipes/tutorials/visualizing-and-understanding-data-from-ibm-watson-iot-platform-by-using-ibm-data-science-experience/)
-
-* [Create devices on IoT Platform](https://developer.ibm.com/recipes/tutorials/how-to-register-devices-in-ibm-iot-foundation/)
-
-* [Simulate device data](https://console.bluemix.net/docs/services/IoT/devices/device_sim.html#sim_device_data)
-
-* [Plotly.js reference](https://plot.ly/javascript/reference/)
-
 
 ## Privacy Notice
 
