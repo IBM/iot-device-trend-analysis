@@ -39,9 +39,9 @@ When the reader has completed this code pattern, they will understand how to:
 
 ## Included Components
 
-+ [IBM Watson IoT Platform](https://console.bluemix.net/registration/?target=/catalog/services/internet-of-things-platform)This service is the hub for IBM Watson IoT and lets you communicate with and consume data from connected devices and gateways. Use the built-in web console dashboards to monitor your IoT data and devices.
++ [IBM Watson IoT Platform](https://console.bluemix.net/registration/?target=/catalog/services/internet-of-things-platform): This service is the hub for IBM Watson IoT and lets you communicate with and consume data from connected devices and gateways. Use the built-in web console dashboards to monitor your IoT data and devices.
 + [Cloudant NoSQL DB](https://console.bluemix.net/catalog/services/cloudant-nosql-db): A fully managed data layer designed for modern web and mobile applications that leverages a flexible JSON schema.
-+ [Plotly.js](https://plot.ly/javascript/) plotly.js is a high-level, declarative charting library with 20 chart types, including statistical graphs, 3D charts and SVG maps
++ [Plotly.js](https://plot.ly/javascript/): A high-level, declarative charting library with 20 chart types, including statistical graphs, 3D charts and SVG maps
 
 ## Featured technologies
 + [Python](https://www.python.org/) Python is a programming language that lets you work more quickly and integrate your systems more effectively.
@@ -60,7 +60,7 @@ Use the ``Deploy to IBM Cloud`` button **OR** create the services and deploy the
 
 You can deploy the application and create services directly on IBM Cloud using the 'Deploy to IBM Cloud' button.  This is alternative to creating services individually and then deploying the application using cloud foundry.
 
-Create an [IBM Cloud account](https://console.bluemix.net/registration/?target=%2Fdashboard%2Fapps) and directly deploy the application using the button bellow.  This will create the IBM Watson IoT Platform and Cloudant DB services for you and connect to your application.
+* Create an [IBM Cloud account](https://console.bluemix.net/registration/?target=%2Fdashboard%2Fapps) and directly deploy the application using the button bellow.  This will create the IBM Watson IoT Platform and Cloudant DB services for you and connect to your application.
 
 [![Deploy to Bluemix](https://metrics-tracker.mybluemix.net/stats/f17d1882d12f932765c92d01a533edf5/button.svg)](https://bluemix.net/devops/setup/deploy?repository=https://github.com/IBM/iot-device-trend-analysis)
 
