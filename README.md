@@ -55,7 +55,7 @@ When the reader has completed this code pattern, they will understand how to:
 
 * [Deploy to IBM Cloud button](#deploy-to-ibm-cloud-button)
 
-##### Steps to setup and run the application
+#### Steps to setup and run the application
 
 1. [Create IBM Watson IoT Platform service on IBM Cloud](#1-create-ibm-watson-iot-platform-service-on-ibm-cloud)
 2. [Create and simulate devices on IoT Platform](#2-create-and-simulate-devices-on-iot-platform)
@@ -65,12 +65,13 @@ When the reader has completed this code pattern, they will understand how to:
 6. [About the application](#6-about-the-application)
 7. [Deploy application to IBM Cloud](#7-deploy-application-to-ibm-cloud)
 
-##### Further reading
+#### Further reading
 
 * [Extending the Code Pattern](#extending-the-code-pattern)
 * [Troubleshooting](#troubleshooting)
 * [Additional Resources](#additional-resources)
 * [Privacy Notice](#privacy-notice)
+
 
 # Deploy to IBM Cloud button
 
@@ -173,7 +174,7 @@ The application in the code pattern is designed to handle payload as the followi
 
 The `deviceId` and `timestamp` are submitted automatically by the IoT Platform, however we would like to configure the devices to send data for `connections`, `deviceCount` and `activeClients`.  The application will plot and analyze these fields over time per device.
 
-#### Add device type
+### Add device type
 
 Before creating devices, we would need to create a device type.  Device types are intended to be groups of devices which share common characteristics.  
 
@@ -205,7 +206,7 @@ On the `Device Information`, you can add attributes to the device type.  These a
 </p>
 
 
-#### Add devices
+### Add devices
 
 Now, we will add device to the device type we created.
 
@@ -234,7 +235,7 @@ Now, we will add device to the device type we created.
 </p>
 
 
-#### Simulate devices
+### Simulate devices
 
 Now we would like to setup our devices to transmit data.  Ideally you would to like read in real data or can have scripts to simulate the data (see `Additional Resources` at the bottom for more information).  For this code pattern, we will go through steps to simulate data sent through by the devices, using simulator feature part of the Watson IoT Platform dashboard.
 The IoT Platform provides a simulator feature to simulate the payload transmitted by the device. In this step, we will turn on the simulator and simulate numbers for the fields to be transmitted by the device.  
@@ -354,14 +355,14 @@ Now, we will configure our IBM Watson IoT Platform to setup Cloudant DB as daily
 
 Once the setup is complete with data coming into our Cloudant DB, we can run the application to start viewing the device data values and look for trends. To run the application, we will clone the repo, add the Cloudant credentials and then run the application through terminal.
 
-#### Clone the repo
+### Clone the repo
 
 In a directory of your choice, clone the repo:
 ```
 git clone https://github.com/IBM/iot-device-trend-analysis
 ```
 
-#### Configure .env file
+### Configure .env file
 
 Create a `.env` file in the root directory of your clone of the project repository by copying the sample `.env.example` file using the following command:
 
@@ -380,7 +381,7 @@ The `.env` file will look something like the following:
   CLOUDANT_URL=
   ```
 
-#### Run the application
+### Run the application
 
 
 Now you are ready to run your application. Go into this project's root directory
@@ -397,7 +398,7 @@ Now you are ready to run your application. Go into this project's root directory
 The application is designed to create dataset from our Cloudant DB which we would like to plot and analyze, and then analyze through plots based on user inputs.  The application provides to view the raw data and view analysis on the data including trends and statistical plots. In this section, we will look at creating dataset, analyzing the data through plots and look at the code.
 
 
-#### Create dataset
+### Create dataset
 
 Before analyzing the data, you will need to define a dataset. This includes dates and device Ids from your Cloudant storage.  You can do this through the app by going to `Create Dataset` link on the main page.  This pulls all the `dates` and `deviceIds` directly from the Cloudant database.  You can make selection for these fields and give a name to your dataset.
 
@@ -430,7 +431,7 @@ Or you can manually edit the `datasets.json` to fill in your database info with 
 }
 ```
 
-#### Analyze the data
+### Analyze the data
 
 Once you have defined your dataset, you are ready to analyze your data through the different options present on the homepage. Each analysis will ask for device(s) and date(s) to generate the plot. Once your plot is generated, you can explore different Plotly interactive options on the top right which can allow to download the plot, change the plot type and other actions.  The `Hourly Stats and Trends` options will allow to view how the hourly max, min, and average are behaving across time, with trend analysis showing change in the values per hour.
 
@@ -438,7 +439,7 @@ Once you have defined your dataset, you are ready to analyze your data through t
   <img width="650"  src="readme_images/hourly-stats.png">
 </p>
 
-#### Code Structure
+### Code Structure
 
 This web application is built using Python Flask framework. The repo consists of Python functions to retrieve the JSON data from Cloudant DB, and Javascript frontend to use the Plotly.js library.  Here we'll give a summary of the code files in the repo.
 
@@ -528,7 +529,7 @@ Plotly.newPlot('plotly_div1', data, layout)
 
 To deploy the application to IBM Cloud, you will need Cloud Foundary CLI installed, so you can use command-line to deploy the application. The configuration for the deployment will be in `manifest.yml` file, which we'll update first.
 
-#### Update manifest.yml
+### Update manifest.yml
 
 Here we will update the `manifest.yml` file in the folder and replace with a unique name for your application. The name that you specify determines the application's URL, such as `your-application-name.mybluemix.net`. Additionally - update the service names so they match what you have in IBM Cloud. The relevant portion of the `manifest.yml` file looks like the following:
 
@@ -548,7 +549,7 @@ applications:
 
 The memory of 256M will allow you to run the application with the `Lite` plan. However as data gets larger with the retrieval, you may have to increase memory to 512M or 1024M.
 
-#### Deploy using Cloud Foundry
+### Deploy using Cloud Foundry
 
 To deploy the application to IBM Cloud, we will use Cloud Foundry CLI. First login to your cloud foundry account
 ```
