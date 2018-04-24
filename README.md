@@ -205,7 +205,7 @@ Before creating devices, we would need to create a device type.  Device types ar
 On the `Device Information`, you can add attributes to the device type.  These attributes are optional. Then click `Next` and `Done`.  The device type should be registered and you should see a similar screen as below.
 
 <p align="center">
-  <img width="800"  src="readme_images/device-type-registered.png">
+  <img width="500"  src="readme_images/device-type-registered.png">
 </p>
 
 
