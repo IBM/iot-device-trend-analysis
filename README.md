@@ -1,5 +1,3 @@
-![IBM Cloud Deployments](https://metrics-tracker.mybluemix.net/stats/f17d1882d12f932765c92d01a533edf5/badge.svg)
-
 # IoT device data trend and visualization app
 
 In this code pattern, we will setup and create a web application to visualize IoT device data and view trends and stats of device fields across days. The IoT industries are looking for ways to analyze the use of IoT devices, and would like better understand the usage of devices. This code pattern will demonstrate using IBM solutions to read and store IoT device data, and then build an application on top of it. The code pattern uses services offered on IBM Cloud such as IBM Watson IoT Platform and Cloudant DB, in addition to deploying the application to the IBM Cloud.  Once setup, the application displays the time-series field data as plots, showing device data trends and statistical analysis.
@@ -62,7 +60,7 @@ You can deploy the application and create services directly on IBM Cloud using t
 
 * Create an [IBM Cloud account](https://console.bluemix.net/registration/?target=%2Fdashboard%2Fapps) and directly deploy the application using the button bellow.  This will create the IBM Watson IoT Platform and Cloudant DB services for you and connect to your application.
 
-[![Deploy to Bluemix](https://metrics-tracker.mybluemix.net/stats/f17d1882d12f932765c92d01a533edf5/button.svg)](https://bluemix.net/devops/setup/deploy?repository=https://github.com/IBM/iot-device-trend-analysis)
+[![Deploy to IBM Cloud](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/IBM/iot-device-trend-analysis)
 
 * Here you can provide your application and toolchain a name. You can choose the `Region`, `Organization` and `Space` where you would like to deploy the application. Then click `Deploy`.
 
@@ -588,31 +586,6 @@ To troubleshoot your IBM Cloud application, use the logs. To see the logs, run:
 ```bash
 cf logs <application-name> --recent
 ```
-
-## Privacy Notice
-
-This web application includes metrics tracker package configured to track deployments to [IBM Cloud](https://www.bluemix.net/) and other platforms. The following information is sent to a [Deployment Tracker](https://github.com/IBM/metrics-collector-service) service on each deployment:
-
-* Python package version
-* Python repository URL
-* Application Name (`application_name`)
-* Application GUID (`application_id`)
-* Application instance index number (`instance_index`)
-* Space ID (`space_id`) or OS username
-* Application Version (`application_version`)
-* Application URIs (`application_uris`)
-* Cloud Foundry API (`cf_api`)
-* Labels and names of bound services
-* Number of instances for each bound service and associated plan information
-* Metadata in the `repository.yaml` file
-
-This data is collected from the `run.py` and `repository.yaml` file in the sample application and the `VCAP_APPLICATION` and `VCAP_SERVICES` environment variables in IBM Cloud and other Cloud Foundry platforms. This data is used by IBM to track metrics around deployments of sample applications to IBM Cloud to measure the usefulness of our examples, so that we can continuously improve the content we offer to you. Only deployments of sample applications that include code to ping the Deployment Tracker service will be tracked.
-
-## Disabling Deployment Tracking
-
-To disable tracking, simply remove ``metrics_tracker_client.track()`` from the
-``run.py`` file in the top level directory.
-
 
 # License
 
