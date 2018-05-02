@@ -24,10 +24,7 @@ When the reader has completed this code pattern, they will understand how to:
 
 ## Architecture Flow
 
-<p align="center">
-  <img width="600"  src="readme_images/arch_flow.png">
-</p>
-
+![](readme_images/arch_flow.png)
 
 1. The IoT device data is stored in Cloudant database from the IBM Watson IoT Platform
 2. The data from Cloudant database is used to create Plotly visualizatons
