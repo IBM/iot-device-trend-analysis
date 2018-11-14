@@ -1,1 +1,1 @@
-{"currentDataset": "", "datasets": []}
+{"currentDataset": "New", "datasets": [{"databaseName": "iotp_nmghmm_default_", "dataset": "New", "dates": ["2018-01-16", "2018-01-17", "2018-01-18"], "deviceIds": ["2eeae108d", "a0c91d0f8", "19ca0a0b6", "19c94a94f", "076814d5e", "02e356e3a", "c270d3f23", "38a42a88e"]}, {"databaseName": "iotp_nmghmm_default_", "dataset": "New1", "dates": ["2018-03-06", "2018-03-07", "2018-03-08", "2018-03-09"], "deviceIds": ["ccabd5cf", "c0faebc4", "ddbdf867", "6c8d54e0", "a9ad5c15"]}]}

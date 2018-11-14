@@ -92,6 +92,8 @@ Once your application and services are created in IBM Cloud,  you will need to d
 * [Create and simulate devices on IoT Platform](#2-create-and-simulate-devices-on-iot-platform)
 * [Configure Cloudant DB as data store for IoT device data](#4-configure-cloudant-db-as-data-store-for-iot-device-data)
 
+
+
 Once you have completed these steps, you should be able to create dataset in your application to start viewing trends and analysis of the IoT device data.
 
 # Run and deploy locally
@@ -103,11 +105,18 @@ Once you have completed these steps, you should be able to create dataset in you
 - [IBM Cloud account](https://console.bluemix.net/registration/?target=%2Fdashboard%2Fapps)
 - [Cloud Foundary CLI](https://docs.cloudfoundry.org/cf-cli/install-go-cli.html)
 
-#### Steps
+#### Steps for setting up IBM Watson IoT Platform with Cloudant DB, and running the application
 1. [Create IBM Watson IoT Platform service on IBM Cloud](#1-create-ibm-watson-iot-platform-service-on-ibm-cloud)
 2. [Create and simulate devices on IoT Platform](#2-create-and-simulate-devices-on-iot-platform)
 3. [Create Cloudant DB on IBM Cloud](#3-create-cloudant-db-on-ibm-cloud)
 4. [Configure Cloudant DB as data store for IoT device data](#4-configure-cloudant-db-as-data-store-for-iot-device-data)
+5. [Run the web application](#5-run-the-web-application)
+6. [About the application](#6-about-the-application)
+7. [Deploy application to IBM Cloud](#7-deploy-application-to-ibm-cloud)
+
+#### Steps for populating Cloudant DB with sample dataset and running the application
+3. [Create Cloudant DB on IBM Cloud](#3-create-cloudant-db-on-ibm-cloud)
+4. (Option 2) [Populate Cloudant DB with sample dataset](#4-option-2-populate-cloudant-db-with-sample-dataset)
 5. [Run the web application](#5-run-the-web-application)
 6. [About the application](#6-about-the-application)
 7. [Deploy application to IBM Cloud](#7-deploy-application-to-ibm-cloud)
@@ -349,13 +358,51 @@ Now, we will configure our IBM Watson IoT Platform to setup Cloudant DB as daily
 </p>
 
 
+## 4. (Option 2) Populate Cloudant DB with sample dataset
+
+To quickly view IoT device data across days, this repository contains sample datasets.  In the [sample_datasets](sample_datasets) folder we will see two datesets, for the month of [January](sample_datasets/January) and [March]((sample_datasets/March)). These contain ten days of data with a json datafile for each day.  These files are populated with sample data from IBM Watson IoT Platform for particular devices.  
+
+This data can be can be populated into your Cloudant DB through the script [write_json_to_cloudant.py](sample_datasets/write_json_to_cloudant.py).
+
+
+In a directory of your choice, first clone the repo:
+```
+git clone https://github.com/IBM/iot-device-trend-analysis
+```
+
+Next update the script with you Cloudant credentials and to the dataset you want to load
+
+* Edit the script to [add your Cloudant credentials](sample_datasets/write_json_to_cloudant.py#L10)
+  ```
+  #cloudant credentials
+  serviceUsername = ""
+  servicePassword = ""
+  serviceURL = ""
+  ```
+
+* Update the script to [choose the dataset](sample_datasets/write_json_to_cloudant.py#L15) you want to load between `January` or `March`
+
+* Edit to [choose appropriate dates](sample_datasets/write_json_to_cloudant.py#L18). This should be among the dates for which the data is present in the dataset.
+
+Now you can run the script. Navigate to the sample_datasets folder, and run the script.
+```
+cd sample_datasets/
+python write_json_to_cloudant.py
+```
+
+This should populate your Cloudant with a database for each data emulating the IoT device data obtained from IBM Watson IoT Platform.
+
+<p align="center">
+  <img width="800"  src="readme_images/cloudant-dataset.png">
+</p>
+
 ## 5. Run the web application
 
 Once the setup is complete with data coming into our Cloudant DB, we can run the application to start viewing the device data values and look for trends. To run the application, we will clone the repo, add the Cloudant credentials and then run the application through terminal.
 
 #### Clone the repo
 
-In a directory of your choice, clone the repo:
+In a directory of your choice, if you have not, first clone the repo:
 ```
 git clone https://github.com/IBM/iot-device-trend-analysis
 ```
