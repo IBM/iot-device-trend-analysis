@@ -106,7 +106,7 @@ Once you have completed these steps, you should be able to create dataset in you
 - [IBM Cloud account](https://console.bluemix.net/registration/?target=%2Fdashboard%2Fapps)
 - [Cloud Foundary CLI](https://docs.cloudfoundry.org/cf-cli/install-go-cli.html)
 
-**Note** Two approaches to setting up and running the application are below. `Option 1` teaches you how to simulate devices and create asample dataset manually. `Option 2` acclerates the process of running the application by taking advantage of using an already made dataset that is included in the repo.
+**Note** Two approaches to setting up and running the application are below. `Option 1` teaches you how to simulate devices and create a sample dataset manually. `Option 2` acclerates the process of running the application by taking advantage of using an already made dataset that is included in the repo.
 
 #### Steps (Option 1) for setting up IBM Watson IoT Platform with Cloudant DB, and running the application
 1. [Create IBM Watson IoT Platform service on IBM Cloud](#1-create-ibm-watson-iot-platform-service-on-ibm-cloud)
