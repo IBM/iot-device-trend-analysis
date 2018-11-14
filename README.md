@@ -2,7 +2,7 @@
 
 In this code pattern, we will setup and create a web application to visualize IoT device data and view trends and stats of device fields across days. The IoT industries are looking for ways to analyze the use of IoT devices, and would like better understand the usage of devices. This code pattern will demonstrate using IBM solutions to read and store IoT device data, and then build an application on top of it. The code pattern uses services offered on IBM Cloud such as IBM Watson IoT Platform and Cloudant DB, in addition to deploying the application to the IBM Cloud.  Once setup, the application displays the time-series field data as plots, showing device data trends and statistical analysis.
 
-First, we will create an IBM Watson IoT Platform service which provides a platform to manage IoT devices and the data being sent across those devices.  This code pattern provides directions on creating dummy IoT devices in the Watson IoT Platform, and then simulating data for those devices using a simulation feature in the IoT platform.  We are interested in certain fields as part of payload for the devices to come through, as the application is designed to read those fields.
+First, we will create an IBM Watson IoT Platform service which provides a platform to manage IoT devices and the data being sent across those devices.  This code pattern provides directions on creating dummy IoT devices in the Watson IoT Platform, and then simulating data for those devices using a simulation feature in the IoT platform.  We are interested in certain fields as part of payload for the devices to come through, as the application is designed to read those fields. Alternatively, we have provided a sample data set so you can quickly build and test out the application.
 
 Next, we will store the devices' fields data from the Watson IoT platform into Cloudant DB.  The Cloudant DB is a NoSQL JSON document store that is optimized for handling heavy workloads of read and write in the cloud.  In this code pattern, we will walk through the process of creating a Cloudant DB service on the IBM Cloud, and retrieve credentials to access it through applications.  The Cloudant DB interface can be launched through the service, which allows to directly manage and view our data.  Once our Cloudant DB is created, we will go through steps on configuring Watson IoT Platform to store the IoT device data into it.
 
@@ -106,7 +106,9 @@ Once you have completed these steps, you should be able to create dataset in you
 - [IBM Cloud account](https://console.bluemix.net/registration/?target=%2Fdashboard%2Fapps)
 - [Cloud Foundary CLI](https://docs.cloudfoundry.org/cf-cli/install-go-cli.html)
 
-#### Steps for setting up IBM Watson IoT Platform with Cloudant DB, and running the application
+**Note** Two approaches to setting up and running the application are below. `Option 1` teaches you how to simulate devices and create a sample dataset manually. `Option 2` acclerates the process of running the application by taking advantage of using an already made dataset that is included in the repo.
+
+#### Steps (Option 1) for setting up IBM Watson IoT Platform with Cloudant DB, and running the application
 1. [Create IBM Watson IoT Platform service on IBM Cloud](#1-create-ibm-watson-iot-platform-service-on-ibm-cloud)
 2. [Create and simulate devices on IoT Platform](#2-create-and-simulate-devices-on-iot-platform)
 3. [Create Cloudant DB on IBM Cloud](#3-create-cloudant-db-on-ibm-cloud)
@@ -115,7 +117,7 @@ Once you have completed these steps, you should be able to create dataset in you
 6. [About the application](#6-about-the-application)
 7. [Deploy application to IBM Cloud](#7-deploy-application-to-ibm-cloud)
 
-#### Steps for populating Cloudant DB with sample dataset and running the application
+#### Steps (Option 2) for populating Cloudant DB with sample dataset and running the application
 3. [Create Cloudant DB on IBM Cloud](#3-create-cloudant-db-on-ibm-cloud)
 4. (Option 2) [Populate Cloudant DB with sample dataset](#4-option-2-populate-cloudant-db-with-sample-dataset)
 5. [Run the web application](#5-run-the-web-application)
