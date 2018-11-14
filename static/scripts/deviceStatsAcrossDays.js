@@ -117,7 +117,7 @@ function plotDeviceStats(data) {
   var deviceIds = data.deviceIds;
   var startDate = data.startdate;
   var endDate = data.enddate;
-  var plotData = data.plotData;
+  var plotData = data.plotdata;
   var field = data.field;
 
   //get plot data length

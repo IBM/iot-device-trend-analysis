@@ -202,7 +202,7 @@ def Retrieve_device_stats():
 
     #get plot data to compare devices
     plotdataArray = plotdata.Devices_field_data(dataArray, deviceIds, inputField)
-
+    
     #create and return the output json
     output = {"dataArray": dataArray, "deviceIds": deviceIds, "plotdata": plotdataArray, "startdate": inputStartDate, "enddate" : inputEndDate, "field": inputField}
     return json.dumps(output)
