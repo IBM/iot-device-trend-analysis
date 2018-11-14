@@ -92,7 +92,8 @@ Once your application and services are created in IBM Cloud,  you will need to d
 * [Create and simulate devices on IoT Platform](#2-create-and-simulate-devices-on-iot-platform)
 * [Configure Cloudant DB as data store for IoT device data](#4-configure-cloudant-db-as-data-store-for-iot-device-data)
 
-
+Or if you would like to use a sample dataset then proceed to this step:
+* [Populate Cloudant DB with sample dataset](#4-option-2-populate-cloudant-db-with-sample-dataset)
 
 Once you have completed these steps, you should be able to create dataset in your application to start viewing trends and analysis of the IoT device data.
 
@@ -360,7 +361,7 @@ Now, we will configure our IBM Watson IoT Platform to setup Cloudant DB as daily
 
 ## 4. (Option 2) Populate Cloudant DB with sample dataset
 
-To quickly view IoT device data across days, this repository contains sample datasets.  In the [sample_datasets](sample_datasets) folder we will see two datesets, for the month of [January](sample_datasets/January) and [March]((sample_datasets/March)). These contain ten days of data with a json datafile for each day.  These files are populated with sample data from IBM Watson IoT Platform for particular devices.  
+To quickly view IoT device data across days, this repository contains sample datasets.  In the [sample_datasets](sample_datasets) folder we will see two datesets, for the month of [January](sample_datasets/January) and [March](sample_datasets/March). These contain ten days of data with a json datafile for each day.  These files are populated with sample data from IBM Watson IoT Platform for particular devices.  
 
 This data can be can be populated into your Cloudant DB through the script [write_json_to_cloudant.py](sample_datasets/write_json_to_cloudant.py).
 
@@ -390,7 +391,7 @@ cd sample_datasets/
 python write_json_to_cloudant.py
 ```
 
-This should populate your Cloudant with a database for each data emulating the IoT device data obtained from IBM Watson IoT Platform.
+This should populate your Cloudant with a database for each day emulating the IoT device data obtained from IBM Watson IoT Platform.
 
 <p align="center">
   <img width="800"  src="readme_images/cloudant-dataset.png">
