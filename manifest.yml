@@ -11,7 +11,6 @@ applications:
   instances: 1
   domain: mybluemix.net
   name: Iot-Analytics
-  host: iot-device-analytics
   disk_quota: 1024M
   buildpack: python_buildpack
   services:
