@@ -1,5 +1,9 @@
 # IoT device data trend and visualization app
 
+# WARNING: This repository is no longer maintained :warning:
+
+> This repository will not be updated. The repository will be kept available in read-only mode.
+
 In this code pattern, we will setup and create a web application to visualize IoT device data and view trends and stats of device fields across days. The IoT industries are looking for ways to analyze the use of IoT devices, and would like better understand the usage of devices. This code pattern will demonstrate using IBM solutions to read and store IoT device data, and then build an application on top of it. The code pattern uses services offered on IBM Cloud such as IBM Watson IoT Platform and Cloudant DB, in addition to deploying the application to the IBM Cloud.  Once setup, the application displays the time-series field data as plots, showing device data trends and statistical analysis.
 
 First, we will create an IBM Watson IoT Platform service which provides a platform to manage IoT devices and the data being sent across those devices.  This code pattern provides directions on creating dummy IoT devices in the Watson IoT Platform, and then simulating data for those devices using a simulation feature in the IoT platform.  We are interested in certain fields as part of payload for the devices to come through, as the application is designed to read those fields. Alternatively, we have provided a sample data set so you can quickly build and test out the application.
